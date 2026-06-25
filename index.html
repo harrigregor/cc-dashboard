@@ -292,28 +292,31 @@ async function loadWeather(){
     document.getElementById('w-hilo').textContent='H: '+Math.round(daily.temperature_2m_max[0])+'°  ·  L: '+Math.round(daily.temperature_2m_min[0])+'°';
     buildAnim(code);
 
-    // Build 5-card forecast using days 1-5
-    // If a day's weathercode is missing, copy from the previous day
+    // Build 5-card forecast — each card in its own try/catch so one bad day can't kill the rest
     const fcCards=document.querySelectorAll('.fc');
-    let lastGoodCode=code; // start with today's code as fallback
-    let lastGoodMax=daily.temperature_2m_max[0];
+    let lastGoodCode=code;
+    let lastGoodMax=daily.temperature_2m_max[0]||15;
     for(let i=0;i<5;i++){
-      const idx=i+1;
-      const t=daily.time[idx];
-      const wc=daily.weathercode[idx];
-      const max=daily.temperature_2m_max[idx];
-      const rain=daily.precipitation_probability_max[idx];
+      try{
+        const idx=i+1;
+        const t    = daily.time[idx];
+        const wc   = daily.weathercode[idx];
+        const max  = daily.temperature_2m_max[idx];
+        const rain = daily.precipitation_probability_max[idx];
 
-      // Use this day's data if valid, else copy last good day
-      const useCode = (wc!==null&&wc!==undefined) ? wc : lastGoodCode;
-      const useMax  = (max!==null&&max!==undefined) ? Math.round(max) : Math.round(lastGoodMax);
-      const rainStr = (rain!==null&&rain!==undefined) ? rain+'%' : '--';
-      const day     = t ? DN[new Date(t+'T00:00:00').getDay()] : DN[(new Date().getDay()+i+1)%7];
+        const useCode = (wc!==null&&wc!==undefined)  ? wc              : lastGoodCode;
+        const useMax  = (max!==null&&max!==undefined) ? Math.round(max) : Math.round(lastGoodMax);
+        const rainStr = (rain!==null&&rain!==undefined) ? rain+'%'      : '--';
+        const day     = t ? DN[new Date(t+'T00:00:00').getDay()] : DN[(new Date().getDay()+idx)%7];
 
-      if(wc!==null&&wc!==undefined) lastGoodCode=wc;
-      if(max!==null&&max!==undefined) lastGoodMax=max;
+        if(wc!==null&&wc!==undefined)  lastGoodCode=wc;
+        if(max!==null&&max!==undefined) lastGoodMax=max;
 
-      fcCards[i].innerHTML=`<div class="fc-day">${day}</div><i class="ti ${WI(useCode)} fc-ico"></i><div class="fc-tmp">${useMax}°</div><div class="fc-rain">${rainStr}</div>`;
+        // Rebuild the entire card html — no partial updates
+        fcCards[i].innerHTML='<div class="fc-day">'+day+'</div><i class="ti '+WI(useCode)+' fc-ico"></i><div class="fc-tmp">'+useMax+'°</div><div class="fc-rain">'+rainStr+'</div>';
+      }catch(err){
+        // card stays as whatever it was
+      }
     }
   }catch(e){buildAnim(61);}
 }
