@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chatswood Chase — Centre Dashboard</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,7 +41,7 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 .fc-row { display:flex; gap:6px; margin-top:10px; }
 .fc     { flex:1; background:rgba(255,255,255,0.07); border-radius:8px; padding:8px 4px; text-align:center; border:0.5px solid rgba(255,255,255,0.09); }
 .fc-day  { font-size:11px; color:rgba(255,255,255,0.4); margin-bottom:4px; }
-.fc-ico  { width:24px; height:24px; margin:0 auto 4px; display:block; }
+.fc-ico  { font-size:20px; color:rgba(255,255,255,0.85); margin-bottom:4px; display:block; }
 .fc-tmp  { font-size:14px; font-weight:600; color:#fff; }
 .fc-rain { font-size:11px; color:rgba(100,160,255,0.85); margin-top:3px; }
 
@@ -48,7 +49,7 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 @keyframes sway  { 0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)} }
 @keyframes pulse { 0%,100%{opacity:0.8;transform:scale(1)}50%{opacity:1;transform:scale(1.07)} }
 @keyframes spin  { from{transform:rotate(0deg)}to{transform:rotate(360deg)} }
-@keyframes bolt  { 0%,88%,100%{opacity:0}90%,98%{opacity:1} }
+@keyndef bolt  { 0%,88%,100%{opacity:0}90%,98%{opacity:1} }
 
 /* ═══ TRAFFIC ═══ */
 .traffic-card  { flex:1; }
@@ -99,15 +100,7 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 .eu-med    { background:#ef9f27; }
 .eu-low    { background:#3a9e3a; }
 .evo-job-title { font-size:13px; font-weight:500; color:#1e0a0e; }
-
-/* Responsibility — same pill style as urgency but neutral */
-.resp-pill { display:inline-block; background:rgba(83,22,32,0.1); color:#531620; border-radius:20px; padding:3px 10px; font-size:11px; font-weight:700; }
-.resp-maint { background:#dce6f5; color:#1e3f7a; }
-.resp-ops   { background:#fdf0dc; color:#7a4a00; }
-.resp-park  { background:#dff0df; color:#1a5c1a; }
-.resp-clean { background:#ede0f5; color:#5c1a7a; }
-
-.evo-date-col { font-size:13px; color:rgba(83,22,32,0.5); }
+.evo-plain     { font-size:13px; color:#1e0a0e; }
 .urg { display:inline-block; padding:4px 12px; border-radius:20px; font-size:11px; font-weight:700; }
 .urg-urgent,.urg-high { background:#e03030; color:#fff; }
 .urg-med              { background:#ef9f27; color:#fff; }
@@ -141,11 +134,11 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
         </div>
       </div>
       <div class="fc-row" id="fc-row">
-        <div class="fc"><div class="fc-day">--</div><div class="fc-ico" id="fci0"></div><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
-        <div class="fc"><div class="fc-day">--</div><div class="fc-ico" id="fci1"></div><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
-        <div class="fc"><div class="fc-day">--</div><div class="fc-ico" id="fci2"></div><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
-        <div class="fc"><div class="fc-day">--</div><div class="fc-ico" id="fci3"></div><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
-        <div class="fc"><div class="fc-day">--</div><div class="fc-ico" id="fci4"></div><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud-rain fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud-rain fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud-rain fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud-rain fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud-rain fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
       </div>
     </div>
 
@@ -245,62 +238,7 @@ const baseOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{displ
 new Chart(document.getElementById('chartDay'),{type:'line',data:{labels:allHours.slice(0,cutoff),datasets:[{data:allData.slice(0,cutoff),borderColor:'rgba(255,255,255,1)',backgroundColor:'rgba(255,255,255,0.18)',fill:true,borderWidth:3,tension:0.4,pointRadius:0}]},options:baseOpts});
 new Chart(document.getElementById('chartWeek'),{type:'bar',data:{labels:['Fri','Sat','Sun','Mon','Tue','Wed','Thu'],datasets:[{data:[8200,14300,12800,5400,5900,6300,7100],backgroundColor:['rgba(255,255,255,0.25)','rgba(255,255,255,0.75)','rgba(255,255,255,0.6)','rgba(255,255,255,0.18)','rgba(255,255,255,0.18)','rgba(255,255,255,0.22)','rgba(255,255,255,0.45)'],borderColor:['rgba(255,255,255,0.5)','rgba(255,255,255,1)','rgba(255,255,255,0.9)','rgba(255,255,255,0.35)','rgba(255,255,255,0.35)','rgba(255,255,255,0.42)','rgba(255,255,255,0.8)'],borderWidth:1.5,borderRadius:4}]},options:baseOpts});
 
-// ── INLINE SVG WEATHER ICONS — no font dependency ──
-function wxSVG(type){
-  const ns='http://www.w3.org/2000/svg';
-  const s=document.createElementNS(ns,'svg');
-  s.setAttribute('viewBox','0 0 24 24');s.setAttribute('width','24');s.setAttribute('height','24');
-  s.setAttribute('fill','none');s.setAttribute('stroke','rgba(255,255,255,0.9)');
-  s.setAttribute('stroke-width','1.8');s.setAttribute('stroke-linecap','round');s.setAttribute('stroke-linejoin','round');
-  const mk=(tag,a)=>{const e=document.createElementNS(ns,tag);Object.entries(a).forEach(([k,v])=>e.setAttribute(k,v));s.appendChild(e);return e;};
-  const Y='rgba(245,200,74,0.95)';
-  if(type==='sun'){
-    mk('circle',{cx:12,cy:12,r:5,fill:Y,stroke:Y});
-    [[12,2,12,4],[12,20,12,22],[2,12,4,12],[20,12,22,12],[4.9,4.9,6.3,6.3],[17.7,17.7,19.1,19.1],[4.9,19.1,6.3,17.7],[17.7,6.3,19.1,4.9]].forEach(([x1,y1,x2,y2])=>mk('line',{x1,y1,x2,y2,stroke:Y}));
-  } else if(type==='cloud-sun'){
-    mk('circle',{cx:17,cy:7,r:3,fill:Y,stroke:Y,'stroke-width':'1.2'});
-    [[17,2,17,3.5],[17,10.5,17,12],[12,7,13.5,7],[20.5,7,22,7],[13.6,3.6,14.7,4.7],[19.3,9.3,20.4,10.4],[13.6,10.4,14.7,9.3],[19.3,4.7,20.4,3.6]].forEach(([x1,y1,x2,y2])=>mk('line',{x1,y1,x2,y2,stroke:Y,'stroke-width':'1.2'}));
-    mk('path',{d:'M7 18a5 5 0 0 1-.5-9.9A6 6 0 0 1 18 10a3 3 0 0 1 0 6H7z',fill:'rgba(195,215,238,0.85)',stroke:'rgba(160,195,230,0.8)','stroke-width':'1.2'});
-  } else if(type==='cloud'){
-    mk('path',{d:'M3 18a5 5 0 0 1 0-10 6 6 0 0 1 11.8-1.3A4 4 0 0 1 20 14a4 4 0 0 1-4 4H3z',fill:'rgba(195,215,238,0.85)',stroke:'rgba(160,195,230,0.8)'});
-  } else if(type==='rain'){
-    mk('path',{d:'M3 15a5 5 0 0 1 0-10 6 6 0 0 1 11.8-1.3A4 4 0 0 1 20 11a4 4 0 0 1-4 4H3z',fill:'rgba(145,185,225,0.9)',stroke:'rgba(120,165,210,0.8)'});
-    [[8,19,7,21],[12,19,11,21],[16,19,15,21]].forEach(([x1,y1,x2,y2])=>mk('line',{x1,y1,x2,y2,stroke:'rgba(100,170,255,0.9)','stroke-width':'2'}));
-  } else if(type==='storm'){
-    mk('path',{d:'M3 13a5 5 0 0 1 0-10 6 6 0 0 1 11.8-1.3A4 4 0 0 1 20 9a4 4 0 0 1-4 4H3z',fill:'rgba(120,155,200,0.9)',stroke:'rgba(100,140,190,0.8)'});
-    mk('polyline',{points:'13,17 10,22 14,22 11,27',stroke:'#f5c84a',fill:'none','stroke-width':'2'});
-  } else if(type==='snow'){
-    mk('path',{d:'M3 15a5 5 0 0 1 0-10 6 6 0 0 1 11.8-1.3A4 4 0 0 1 20 11a4 4 0 0 1-4 4H3z',fill:'rgba(195,215,238,0.85)',stroke:'rgba(160,195,230,0.8)'});
-    [[8,19,8,23],[12,19,12,23],[16,19,16,23],[6,21,10,21],[10,21,14,21],[14,21,18,21]].forEach(([x1,y1,x2,y2])=>mk('line',{x1,y1,x2,y2,stroke:'rgba(180,220,255,0.9)'}));
-  } else if(type==='fog'){
-    [[3,10,21,10],[3,14,21,14],[3,18,21,18]].forEach(([x1,y1,x2,y2])=>mk('line',{x1,y1,x2,y2,stroke:'rgba(200,220,240,0.7)','stroke-width':'2'}));
-  } else if(type==='drizzle'){
-    mk('path',{d:'M3 15a5 5 0 0 1 0-10 6 6 0 0 1 11.8-1.3A4 4 0 0 1 20 11a4 4 0 0 1-4 4H3z',fill:'rgba(160,195,230,0.85)',stroke:'rgba(140,180,220,0.8)'});
-    [[9,19,8,21],[13,19,12,21]].forEach(([x1,y1,x2,y2])=>mk('line',{x1,y1,x2,y2,stroke:'rgba(100,170,255,0.8)','stroke-width':'1.8'}));
-  }
-  return s;
-}
-
-function codeToType(c){
-  if(c===0) return'sun';
-  if(c<=2)  return'cloud-sun';
-  if(c<=3)  return'cloud';
-  if(c<=48) return'fog';
-  if(c<=57) return'drizzle';
-  if(c<=67) return'rain';
-  if(c<=77) return'snow';
-  if(c<=82) return'rain';
-  return'storm';
-}
-
-// Set icon in a container
-function setIcon(el, code){
-  while(el.firstChild) el.removeChild(el.firstChild);
-  const type = (code!==null&&code!==undefined) ? codeToType(code) : 'cloud-sun';
-  el.appendChild(wxSVG(type));
-}
-
-// ── WEATHER ANIMATION (main icon) ──
+// ── WEATHER ANIMATION ──
 function buildAnim(code){
   const el=document.getElementById('weather-anim');el.innerHTML='';
   const ns='http://www.w3.org/2000/svg';
@@ -339,10 +277,8 @@ function buildAnim(code){
 
 // ── WEATHER API ──
 const WD={0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Foggy',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow grains',80:'Rain showers',81:'Heavy showers',82:'Violent showers',95:'Thunderstorm',96:'Thunderstorm & hail',99:'Thunderstorm & hail'};
+const WI=c=>{if(c===0)return'ti-sun';if(c<=2)return'ti-cloud-sun';if(c===3)return'ti-cloud';if(c<=48)return'ti-cloud-fog';if(c<=57)return'ti-cloud-drizzle';if(c<=67)return'ti-cloud-rain';if(c<=77)return'ti-snowflake';if(c<=82)return'ti-cloud-storm';return'ti-bolt';};
 const DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-
-// Pre-render fallback icons immediately so cards never blank
-for(let i=0;i<5;i++) setIcon(document.getElementById('fci'+i), 2);
 
 async function loadWeather(){
   try{
@@ -356,55 +292,53 @@ async function loadWeather(){
     document.getElementById('w-hilo').textContent='H: '+Math.round(daily.temperature_2m_max[0])+'°  ·  L: '+Math.round(daily.temperature_2m_min[0])+'°';
     buildAnim(code);
 
+    // Build 5-card forecast using days 1-5
+    // If a day's weathercode is missing, copy from the previous day
     const fcCards=document.querySelectorAll('.fc');
+    let lastGoodCode=code; // start with today's code as fallback
+    let lastGoodMax=daily.temperature_2m_max[0];
     for(let i=0;i<5;i++){
       const idx=i+1;
       const t=daily.time[idx];
-      const wc=daily.weathercode[idx]; // may be null for far-out days
+      const wc=daily.weathercode[idx];
       const max=daily.temperature_2m_max[idx];
       const rain=daily.precipitation_probability_max[idx];
 
-      // Always render — use fallbacks if data missing
-      const day = t ? DN[new Date(t+'T00:00:00').getDay()] : DN[(new Date().getDay()+i+1)%7];
-      const tempStr = (max!==null&&max!==undefined) ? Math.round(max)+'°' : '--°';
+      // Use this day's data if valid, else copy last good day
+      const useCode = (wc!==null&&wc!==undefined) ? wc : lastGoodCode;
+      const useMax  = (max!==null&&max!==undefined) ? Math.round(max) : Math.round(lastGoodMax);
       const rainStr = (rain!==null&&rain!==undefined) ? rain+'%' : '--';
-      const safeCode = (wc!==null&&wc!==undefined) ? wc : 2;
+      const day     = t ? DN[new Date(t+'T00:00:00').getDay()] : DN[(new Date().getDay()+i+1)%7];
 
-      fcCards[i].querySelector('.fc-day').textContent = day;
-      fcCards[i].querySelector('.fc-tmp').textContent = tempStr;
-      fcCards[i].querySelector('.fc-rain').textContent = rainStr;
-      setIcon(fcCards[i].querySelector('.fc-ico'), safeCode);
+      if(wc!==null&&wc!==undefined) lastGoodCode=wc;
+      if(max!==null&&max!==undefined) lastGoodMax=max;
+
+      fcCards[i].innerHTML=`<div class="fc-day">${day}</div><i class="ti ${WI(useCode)} fc-ico"></i><div class="fc-tmp">${useMax}°</div><div class="fc-rain">${rainStr}</div>`;
     }
-  }catch(e){ buildAnim(61); }
+  }catch(e){buildAnim(61);}
 }
 loadWeather(); setInterval(loadWeather,600000);
 
 // ── EVO GO ──
-const RESP = {
-  'Maintenance': 'resp-maint',
-  'Operations':  'resp-ops',
-  'Car Park':    'resp-park',
-  'Cleaners':    'resp-clean',
-};
 const EVO=[
-  {t:'Escalator E3 — fault alarm active',           r:'Maintenance',raised:'Today',      d:'eu-urgent',urg:'Urgent',uc:'urg-urgent'},
-  {t:'Loading dock roller door — not closing',       r:'Operations', raised:'Today',      d:'eu-urgent',urg:'Urgent',uc:'urg-urgent'},
-  {t:'HVAC unit failure — Level 3 West',             r:'Maintenance',raised:'Yesterday',  d:'eu-high',  urg:'High',  uc:'urg-high'},
-  {t:'P2 car park lighting — 6 bays out',            r:'Car Park',   raised:'2 days ago', d:'eu-high',  urg:'High',  uc:'urg-high'},
-  {t:'David Jones entry — ceiling tile fallen',      r:'Maintenance',raised:'2 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
-  {t:'Food court — grease trap overflow',            r:'Cleaners',   raised:'2 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
-  {t:'Bathroom L1 North — hand dryer fault',         r:'Maintenance',raised:'3 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
-  {t:'Exterior signage — bulb replacement',          r:'Operations', raised:'3 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
-  {t:'Level B1 Row 10 — line marking faded',         r:'Car Park',   raised:'4 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
-  {t:'Common area carpet — stain treatment',         r:'Cleaners',   raised:'4 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
-  {t:'North entrance auto door — slow response',     r:'Maintenance',raised:'5 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
+  {t:'Escalator E3 — fault alarm active',           r:'Maintenance', raised:'Today',      d:'eu-urgent',urg:'Urgent',uc:'urg-urgent'},
+  {t:'Loading dock roller door — not closing',       r:'Operations',  raised:'Today',      d:'eu-urgent',urg:'Urgent',uc:'urg-urgent'},
+  {t:'HVAC unit failure — Level 3 West',             r:'Maintenance', raised:'Yesterday',  d:'eu-high',  urg:'High',  uc:'urg-high'},
+  {t:'P2 car park lighting — 6 bays out',            r:'Car Park',    raised:'2 days ago', d:'eu-high',  urg:'High',  uc:'urg-high'},
+  {t:'David Jones entry — ceiling tile fallen',      r:'Maintenance', raised:'2 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
+  {t:'Food court — grease trap overflow',            r:'Cleaners',    raised:'2 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
+  {t:'Bathroom L1 North — hand dryer fault',         r:'Maintenance', raised:'3 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
+  {t:'Exterior signage — bulb replacement',          r:'Operations',  raised:'3 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
+  {t:'Level B1 Row 10 — line marking faded',         r:'Car Park',    raised:'4 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
+  {t:'Common area carpet — stain treatment',         r:'Cleaners',    raised:'4 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
+  {t:'North entrance auto door — slow response',     r:'Maintenance', raised:'5 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
 ];
 
 document.getElementById('evo-body').innerHTML=EVO.map(j=>`
   <tr>
     <td><span class="evo-dot ${j.d}"></span><span class="evo-job-title">${j.t}</span></td>
-    <td class="center"><span class="resp-pill ${RESP[j.r]||''}">${j.r}</span></td>
-    <td class="center evo-date-col">${j.raised}</td>
+    <td class="center"><span class="evo-plain">${j.r}</span></td>
+    <td class="center"><span class="evo-plain">${j.raised}</span></td>
     <td class="center"><span class="urg ${j.uc}">${j.urg}</span></td>
   </tr>`).join('');
 
