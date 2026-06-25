@@ -23,21 +23,16 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 .card-light { background: #f7f0f1; border-radius: 12px; border: 0.5px solid rgba(83,22,32,0.12); display: flex; flex-direction: column; min-height: 0; padding: 14px 20px; }
 
 .lbl      { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.8); font-weight: 700; margin-bottom: 10px; flex-shrink: 0; }
-.lbl-dark { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(83,22,32,0.75);   font-weight: 700; margin-bottom: 10px; flex-shrink: 0; }
+.lbl-dark { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(83,22,32,0.75); font-weight: 700; margin-bottom: 10px; flex-shrink: 0; }
 
 /* ═══ HEADER ═══ */
-.header-card {
-  background: #f7f0f1; border-radius: 12px;
-  padding: 12px 22px;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-shrink: 0;
-}
+.header-card { background: #f7f0f1; border-radius: 12px; padding: 12px 22px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
 .logo     { height: 50px; filter: brightness(0) saturate(100%) invert(9%) sepia(57%) saturate(2600%) hue-rotate(333deg) brightness(80%) contrast(95%); opacity:0.9; }
 .time-big { font-size: 56px; font-weight: 300; color: #531620; line-height: 1; text-align: right; }
 .date-sub { font-size: 15px; color: rgba(83,22,32,0.5); margin-top: 4px; text-align: right; }
 
-/* ═══ WEATHER — compact, no dead space ═══ */
-.wx-card { flex-shrink: 0; }  /* fixed height, not flex:1 */
+/* ═══ WEATHER ═══ */
+.wx-card { flex-shrink: 0; }
 .wx-body { display: flex; align-items: center; gap: 10px; }
 .wx-anim-wrap { width: 80px; height: 68px; overflow: hidden; flex-shrink: 0; }
 .wx-anim      { width: 80px; height: 80px; }
@@ -61,11 +56,11 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 @keyframes spin  { from{transform:rotate(0deg)}to{transform:rotate(360deg)} }
 @keyframes bolt  { 0%,88%,100%{opacity:0}90%,98%{opacity:1} }
 
-/* ═══ TRAFFIC — flex:1 gets all remaining space ═══ */
-.traffic-card { flex: 1; }
-.traffic-top  { display: flex; gap: 24px; align-items: flex-start; flex-shrink: 0; }
-.traffic-big  { font-size: 68px; font-weight: 700; color: #fff; line-height: 1; }
-.traffic-lbl  { font-size: 14px; color: rgba(255,255,255,0.38); margin-top: 3px; }
+/* ═══ TRAFFIC ═══ */
+.traffic-card  { flex: 1; }
+.traffic-top   { display: flex; gap: 24px; align-items: flex-start; flex-shrink: 0; }
+.traffic-big   { font-size: 68px; font-weight: 700; color: #fff; line-height: 1; }
+.traffic-lbl   { font-size: 14px; color: rgba(255,255,255,0.38); margin-top: 3px; }
 .traffic-stats { padding-top: 8px; display: flex; flex-direction: column; gap: 6px; }
 .tstat         { font-size: 15px; color: rgba(255,255,255,0.5); }
 .tstat strong  { color: #fff; font-weight: 700; font-size: 19px; }
@@ -78,47 +73,47 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 /* ═══ AUDIT ═══ */
 .audit-card { flex-shrink: 0; }
 .audit-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-.audit-table th {
-  font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase;
-  color: rgba(83,22,32,0.45); padding: 0 0 8px 0;
-  text-align: center; font-weight: 700;
-  border-bottom: 0.5px solid rgba(83,22,32,0.12);
-}
-.audit-table th:first-child { text-align: left; }
-.audit-table td {
-  padding: 8px 0; border-bottom: 0.5px solid rgba(83,22,32,0.06);
-  color: #1e0a0e; vertical-align: middle;
-  font-size: 14px; text-align: center;
-}
-.audit-table td:first-child { text-align: left; }
+.audit-table colgroup col:nth-child(1) { width: 36%; }
+.audit-table colgroup col:nth-child(2) { width: 14%; }
+.audit-table colgroup col:nth-child(3) { width: 32%; }
+.audit-table colgroup col:nth-child(4) { width: 18%; }
+.audit-table th { font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(83,22,32,0.45); padding: 0 0 8px 0; font-weight: 700; border-bottom: 0.5px solid rgba(83,22,32,0.12); text-align: left; }
+.audit-table th.center { text-align: center; }
+.audit-table td { padding: 8px 0; border-bottom: 0.5px solid rgba(83,22,32,0.06); color: #1e0a0e; vertical-align: middle; font-size: 14px; text-align: left; }
+.audit-table td.center { text-align: center; }
 .audit-table tr:last-child td { border-bottom: none; }
-
 .tick     { width: 24px; height: 24px; border-radius: 50%; display:inline-flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; }
 .tick-yes { background: #27a84a; color: #fff; }
-.tick-no  { background: rgba(83,22,32,0.1); color: rgba(83,22,32,0.25); font-size:16px; line-height:1; }
+.tick-no  { background: rgba(83,22,32,0.1); color: rgba(83,22,32,0.25); font-size:16px; }
 .act-badge { display:inline-block; background:#e03030; color:#fff; border-radius:20px; padding:3px 10px; font-size:13px; font-weight:700; }
 .act-zero  { color:rgba(83,22,32,0.2); font-size:13px; }
 .today-row td { color:rgba(83,22,32,0.35); font-style:italic; }
 
-/* ═══ EVO GO ═══ */
-.evo-card { flex: 1; }
-.evo-scroll-wrap { flex:1; min-height:0; overflow:hidden; }
+/* ═══ EVO GO — single table with thead sticky, tbody scrolls ═══ */
+.evo-card { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.evo-table-wrap { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
 
-.evo-table { width:100%; border-collapse:collapse; table-layout:fixed; }
-.evo-table th {
-  font-size:10px; letter-spacing:0.09em; text-transform:uppercase;
-  color:rgba(83,22,32,0.45); padding:0 0 8px 0;
-  text-align:center; font-weight:700;
-  border-bottom:0.5px solid rgba(83,22,32,0.12);
-}
-.evo-table th:first-child { text-align:left; }
-.evo-table td {
-  padding:8px 0; border-bottom:0.5px solid rgba(83,22,32,0.06);
-  vertical-align:middle; font-size:13px; color:#1e0a0e;
-  text-align:center;
-}
-.evo-table td:first-child { text-align:left; }
-.evo-table tr:last-child td { border-bottom:none; }
+/* One table, thead fixed, tbody in scrolling div */
+.evo-head-table,
+.evo-body-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+
+/* Column widths — same on both tables */
+.evo-head-table colgroup col:nth-child(1),
+.evo-body-table colgroup col:nth-child(1) { width: 42%; }
+.evo-head-table colgroup col:nth-child(2),
+.evo-body-table colgroup col:nth-child(2) { width: 18%; }
+.evo-head-table colgroup col:nth-child(3),
+.evo-body-table colgroup col:nth-child(3) { width: 16%; }
+.evo-head-table colgroup col:nth-child(4),
+.evo-body-table colgroup col:nth-child(4) { width: 14%; }
+
+.evo-head-table th { font-size:10px; letter-spacing:0.09em; text-transform:uppercase; color:rgba(83,22,32,0.45); padding:0 0 8px 0; font-weight:700; border-bottom:0.5px solid rgba(83,22,32,0.12); text-align:left; }
+.evo-head-table th.center { text-align:center; }
+
+.evo-scroll-body { flex: 1; min-height: 0; overflow: hidden; }
+.evo-body-table td { padding:8px 0; border-bottom:0.5px solid rgba(83,22,32,0.06); vertical-align:middle; font-size:13px; color:#1e0a0e; text-align:left; }
+.evo-body-table td.center { text-align:center; }
+.evo-body-table tr:last-child td { border-bottom:none; }
 
 .evo-dot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:7px; vertical-align:middle; }
 .eu-urgent,.eu-high { background:#e24b4a; }
@@ -129,7 +124,7 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 .evo-resp-plain { font-size:13px; color:rgba(83,22,32,0.5); }
 .evo-date-col   { font-size:13px; color:rgba(83,22,32,0.5); }
 
-.urg { display:inline-block; padding:4px 12px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:0.02em; }
+.urg { display:inline-block; padding:4px 12px; border-radius:20px; font-size:11px; font-weight:700; }
 .urg-urgent,.urg-high { background:#e03030; color:#fff; }
 .urg-med              { background:#ef9f27; color:#fff; }
 .urg-low              { background:#27a84a; color:#fff; }
@@ -141,7 +136,6 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
   <!-- ═══ LEFT ═══ -->
   <div class="left">
 
-    <!-- Header -->
     <div class="header-card">
       <img class="logo" src="https://chadmik71.github.io/Valet/logo-maroon.png" alt="Chatswood Chase">
       <div>
@@ -150,7 +144,6 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
       </div>
     </div>
 
-    <!-- Weather — compact fixed height -->
     <div class="card wx-card">
       <div class="lbl">Live weather — Chatswood NSW</div>
       <div class="wx-body">
@@ -174,7 +167,6 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
       </div>
     </div>
 
-    <!-- Traffic — takes all remaining space -->
     <div class="card traffic-card">
       <div class="lbl">Foot traffic</div>
       <div class="traffic-top">
@@ -209,27 +201,28 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
     <div class="card-light audit-card">
       <div class="lbl-dark">iAuditor — Daily Inspections</div>
       <table class="audit-table">
+        <colgroup><col><col><col><col></colgroup>
         <thead>
           <tr>
-            <th style="width:35%">Date</th>
-            <th style="width:14%">Done</th>
-            <th style="width:32%">Completed By</th>
-            <th style="width:19%">Actions</th>
+            <th>Date</th>
+            <th class="center">Done</th>
+            <th class="center">Completed By</th>
+            <th class="center">Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr class="today-row">
             <td>Today</td>
-            <td><span class="tick tick-no">–</span></td>
-            <td style="color:rgba(83,22,32,0.3)">—</td>
-            <td><span class="act-zero">—</span></td>
+            <td class="center"><span class="tick tick-no">–</span></td>
+            <td class="center" style="color:rgba(83,22,32,0.3)">—</td>
+            <td class="center"><span class="act-zero">—</span></td>
           </tr>
-          <tr><td>Wed 24 Jun</td><td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td>Marcus T.</td><td><span class="act-zero">0</span></td></tr>
-          <tr><td>Tue 23 Jun</td><td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td>Sarah L.</td><td><span class="act-badge">2</span></td></tr>
-          <tr><td>Mon 22 Jun</td><td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td>Marcus T.</td><td><span class="act-zero">0</span></td></tr>
-          <tr><td>Sun 21 Jun</td><td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td>Jamie R.</td><td><span class="act-badge">1</span></td></tr>
-          <tr><td>Sat 20 Jun</td><td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td>Sarah L.</td><td><span class="act-zero">0</span></td></tr>
-          <tr><td>Fri 19 Jun</td><td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td>Jamie R.</td><td><span class="act-zero">0</span></td></tr>
+          <tr><td>Wed 24 Jun</td><td class="center"><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td class="center">Marcus</td><td class="center"><span class="act-zero">0</span></td></tr>
+          <tr><td>Tue 23 Jun</td><td class="center"><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td class="center">Sarah</td><td class="center"><span class="act-badge">2</span></td></tr>
+          <tr><td>Mon 22 Jun</td><td class="center"><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td class="center">Marcus</td><td class="center"><span class="act-zero">0</span></td></tr>
+          <tr><td>Sun 21 Jun</td><td class="center"><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td class="center">Jamie</td><td class="center"><span class="act-badge">1</span></td></tr>
+          <tr><td>Sat 20 Jun</td><td class="center"><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td class="center">Sarah</td><td class="center"><span class="act-zero">0</span></td></tr>
+          <tr><td>Fri 19 Jun</td><td class="center"><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td class="center">Jamie</td><td class="center"><span class="act-zero">0</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -237,18 +230,24 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
     <!-- Evo Go -->
     <div class="card-light evo-card">
       <div class="lbl-dark">Evo Go — Outstanding Jobs</div>
-      <table class="evo-table" style="flex-shrink:0;">
-        <thead><tr>
-          <th style="width:40%">Job</th>
-          <th style="width:18%">Responsibility</th>
-          <th style="width:16%">Raised</th>
-          <th style="width:16%">Urgency</th>
-        </tr></thead>
-      </table>
-      <div class="evo-scroll-wrap">
-        <table class="evo-table">
-          <tbody id="evo-body"></tbody>
+      <div class="evo-table-wrap">
+        <!-- Fixed header -->
+        <table class="evo-head-table" style="flex-shrink:0;">
+          <colgroup><col><col><col><col></colgroup>
+          <thead><tr>
+            <th>Job</th>
+            <th class="center">Responsibility</th>
+            <th class="center">Raised</th>
+            <th class="center">Urgency</th>
+          </tr></thead>
         </table>
+        <!-- Scrolling body -->
+        <div class="evo-scroll-body">
+          <table class="evo-body-table">
+            <colgroup><col><col><col><col></colgroup>
+            <tbody id="evo-body"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -283,7 +282,7 @@ const allData=[80,140,310,580,920,1340,1820,2640,2380,1950,1640,1420,1180,850,52
 const cutoff=Math.max(Math.min(nowH-6+1,16),2);
 
 const baseOpts={
-  responsive:true, maintainAspectRatio:false,
+  responsive:true,maintainAspectRatio:false,
   plugins:{legend:{display:false},tooltip:{enabled:false}},
   scales:{
     x:{ticks:{color:'rgba(255,255,255,0.35)',font:{size:9}},grid:{display:false},border:{display:false}},
@@ -342,7 +341,6 @@ function buildAnim(code){
     svg.appendChild(cg);
   }
   if(isRain||isStorm){
-    // drops start at y=46, fall 8px — all within 0-68 so clip wrapper catches them
     [[22,46],[31,51],[40,46],[49,51],[27,57],[45,57]].forEach(([x,y],i)=>{
       const d=mk('line',{x1:x,y1:y,x2:x-3,y2:y+8,stroke:'rgba(100,170,255,0.9)','stroke-width':'2','stroke-linecap':'round'});
       d.style.animation=`fall 1.3s ease-in ${(i*0.19).toFixed(2)}s infinite`;
@@ -360,14 +358,14 @@ function buildAnim(code){
   el.appendChild(svg);
 }
 
-// ── WEATHER API ──
+// ── WEATHER API — request 7 days, use index 1-5 for forecast ──
 const WD={0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Foggy',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow grains',80:'Rain showers',81:'Heavy showers',82:'Violent showers',95:'Thunderstorm',96:'Thunderstorm & hail',99:'Thunderstorm & hail'};
 const WI=c=>{if(c===0)return'ti-sun';if(c<=2)return'ti-cloud-sun';if(c===3)return'ti-cloud';if(c<=48)return'ti-cloud-fog';if(c<=57)return'ti-cloud-drizzle';if(c<=67)return'ti-cloud-rain';if(c<=77)return'ti-snowflake';if(c<=82)return'ti-cloud-storm';return'ti-bolt';};
 const DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
 async function loadWeather(){
   try{
-    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=-33.797&longitude=151.183&current=temperature_2m,weathercode,relativehumidity_2m,apparent_temperature,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Australia%2FSydney&forecast_days=6');
+    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=-33.797&longitude=151.183&current=temperature_2m,weathercode,relativehumidity_2m,apparent_temperature,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Australia%2FSydney&forecast_days=7');
     const d=await r.json();
     const cur=d.current,daily=d.daily;
     const code=cur.weathercode;
@@ -376,11 +374,17 @@ async function loadWeather(){
     document.getElementById('w-sub').textContent='Feels like '+Math.round(cur.apparent_temperature)+'°  ·  Humidity '+cur.relativehumidity_2m+'%  ·  Wind '+Math.round(cur.windspeed_10m)+' km/h';
     document.getElementById('w-hilo').textContent='H: '+Math.round(daily.temperature_2m_max[0])+'°  ·  L: '+Math.round(daily.temperature_2m_min[0])+'°';
     buildAnim(code);
+    // Use indices 1-5 so all 5 cards always have a real future day
     const fcCards=document.querySelectorAll('.fc');
     for(let i=0;i<5;i++){
       const idx=i+1;
-      const t=daily.time[idx], wc=daily.weathercode[idx];
-      if(!t||wc===undefined||wc===null){ fcCards[i].querySelector('.fc-ico').className='ti ti-cloud fc-ico'; continue; }
+      const t=daily.time[idx];
+      const wc=daily.weathercode[idx];
+      if(!t || wc===undefined || wc===null){
+        // fallback — keep cloud icon, fill what we have
+        fcCards[i].querySelector('.fc-day').textContent=t?DN[new Date(t+'T00:00:00').getDay()]:'--';
+        continue;
+      }
       const day=DN[new Date(t+'T00:00:00').getDay()];
       const max=Math.round(daily.temperature_2m_max[idx]);
       const rain=daily.precipitation_probability_max[idx]??'--';
@@ -392,29 +396,30 @@ loadWeather(); setInterval(loadWeather,600000);
 
 // ── EVO GO ──
 const EVO=[
-  {t:'Escalator E3 — fault alarm active',       r:'Maintenance',raised:'Today',      d:'eu-urgent',urg:'Urgent',uc:'urg-urgent'},
-  {t:'Loading dock roller door — not closing',   r:'Operations', raised:'Today',      d:'eu-urgent',urg:'Urgent',uc:'urg-urgent'},
-  {t:'HVAC unit failure — Level 3 West',         r:'Maintenance',raised:'Yesterday',  d:'eu-high',  urg:'High',  uc:'urg-high'},
-  {t:'P2 car park lighting — 6 bays out',        r:'Car Park',   raised:'2 days ago', d:'eu-high',  urg:'High',  uc:'urg-high'},
-  {t:'Myer entry — ceiling tile fallen',         r:'Maintenance',raised:'2 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
-  {t:'Food court — grease trap overflow',        r:'Cleaners',   raised:'2 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
-  {t:'Bathroom L1 North — hand dryer fault',     r:'Maintenance',raised:'3 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
-  {t:'Exterior signage — bulb replacement',      r:'Operations', raised:'3 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
-  {t:'Loading bay — line marking faded',         r:'Car Park',   raised:'4 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
-  {t:'Common area carpet — stain treatment',     r:'Cleaners',   raised:'4 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
-  {t:'North entrance auto door — slow response', r:'Maintenance',raised:'5 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
+  {t:'Escalator E3 — fault alarm active',            r:'Maintenance', raised:'Today',      d:'eu-urgent',urg:'Urgent',uc:'urg-urgent'},
+  {t:'Loading dock roller door — not closing',        r:'Operations',  raised:'Today',      d:'eu-urgent',urg:'Urgent',uc:'urg-urgent'},
+  {t:'HVAC unit failure — Level 3 West',              r:'Maintenance', raised:'Yesterday',  d:'eu-high',  urg:'High',  uc:'urg-high'},
+  {t:'P2 car park lighting — 6 bays out',             r:'Car Park',    raised:'2 days ago', d:'eu-high',  urg:'High',  uc:'urg-high'},
+  {t:'David Jones entry — ceiling tile fallen',       r:'Maintenance', raised:'2 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
+  {t:'Food court — grease trap overflow',             r:'Cleaners',    raised:'2 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
+  {t:'Bathroom L1 North — hand dryer fault',          r:'Maintenance', raised:'3 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
+  {t:'Exterior signage — bulb replacement',           r:'Operations',  raised:'3 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
+  {t:'Level B1 Row 10 — line marking faded',          r:'Car Park',    raised:'4 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
+  {t:'Common area carpet — stain treatment',          r:'Cleaners',    raised:'4 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
+  {t:'North entrance auto door — slow response',      r:'Maintenance', raised:'5 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
 ];
 
 document.getElementById('evo-body').innerHTML=EVO.map(j=>`
   <tr>
     <td><span class="evo-dot ${j.d}"></span><span class="evo-job-title">${j.t}</span></td>
-    <td><span class="evo-resp-plain">${j.r}</span></td>
-    <td class="evo-date-col">${j.raised}</td>
-    <td><span class="urg ${j.uc}">${j.urg}</span></td>
+    <td class="center"><span class="evo-resp-plain">${j.r}</span></td>
+    <td class="center evo-date-col">${j.raised}</td>
+    <td class="center"><span class="urg ${j.uc}">${j.urg}</span></td>
   </tr>`).join('');
 
+// autoscroll
 (function(){
-  const w=document.querySelector('.evo-scroll-wrap');
+  const w=document.querySelector('.evo-scroll-body');
   let pos=0,dir=1,pause=0;
   setInterval(()=>{
     if(pause>0){pause--;return;}
