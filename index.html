@@ -26,131 +26,114 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
   min-height: 0;
 }
 
-/* left: three equal thirds */
-.left .panel {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-/* right: iAuditor fixed, evo grows */
-.iaud-card { flex: 0 0 auto; }
-.evo-card  { flex: 1; min-height: 0; }
-
 .card {
   background: rgba(255,255,255,0.08);
   border-radius: 12px;
-  padding: 14px 16px;
   border: 0.5px solid rgba(255,255,255,0.12);
-  flex: 1;
   display: flex;
   flex-direction: column;
   min-height: 0;
+  padding: 14px 18px;
 }
 .card-light {
   background: #f7f0f1;
   border-radius: 12px;
-  padding: 12px 16px;
   border: 0.5px solid rgba(83,22,32,0.12);
   display: flex;
   flex-direction: column;
   min-height: 0;
+  padding: 14px 18px;
 }
 
-.label      { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-bottom: 6px; }
-.label-dark { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(83,22,32,0.38);    margin-bottom: 6px; }
+.lbl      { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-bottom: 8px; flex-shrink: 0; }
+.lbl-dark { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(83,22,32,0.38);    margin-bottom: 8px; flex-shrink: 0; }
 
-/* ── PANEL 1: HEADER / CLOCK ── */
+/* ═══ HEADER ═══ */
 .header-card {
   background: #f7f0f1;
   border-radius: 12px;
-  padding: 0 20px;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex: 1;
-  min-height: 0;
+  flex-shrink: 0;
 }
-.logo { height: 52px; filter: brightness(0) saturate(100%) invert(9%) sepia(57%) saturate(2600%) hue-rotate(333deg) brightness(80%) contrast(95%); opacity:0.9; }
-.time-big  { font-size: 52px; font-weight: 400; color: #531620; line-height: 1; text-align: right; }
-.date-sub  { font-size: 13px; color: rgba(83,22,32,0.5); margin-top: 3px; text-align: right; }
+.logo { height: 44px; filter: brightness(0) saturate(100%) invert(9%) sepia(57%) saturate(2600%) hue-rotate(333deg) brightness(80%) contrast(95%); opacity:0.9; }
+.time-big { font-size: 46px; font-weight: 300; color: #531620; line-height: 1; text-align: right; }
+.date-sub { font-size: 13px; color: rgba(83,22,32,0.5); margin-top: 3px; text-align: right; }
 
-/* ── PANEL 2: WEATHER (Google-style) ── */
-.weather-card {
-  background: rgba(255,255,255,0.08);
-  border-radius: 12px;
-  border: 0.5px solid rgba(255,255,255,0.12);
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 14px 16px;
-  overflow: hidden;
-}
-.wx-top { display: flex; align-items: center; gap: 0; flex: 1; min-height: 0; }
-.wx-anim { width: 90px; height: 90px; flex-shrink: 0; }
-.wx-center { flex: 1; padding-left: 8px; }
-.wx-temp { font-size: 56px; font-weight: 300; color: #fff; line-height: 1; }
-.wx-desc { font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 2px; }
-.wx-meta { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 4px; }
-.wx-right { text-align: right; padding-right: 4px; }
-.wx-loc   { font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
-.wx-hilo  { font-size: 13px; color: rgba(255,255,255,0.7); }
+/* ═══ WEATHER ═══ */
+.wx-card { flex: 1; }
+.wx-main { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.wx-anim { width: 88px; height: 88px; flex-shrink: 0; }
+.wx-center { flex: 1; }
+.wx-temp { font-size: 58px; font-weight: 300; color: #fff; line-height: 1; }
+.wx-desc { font-size: 15px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+.wx-sub  { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 5px; }
+.wx-right { text-align: right; flex-shrink: 0; padding-left: 8px; }
+.wx-loc  { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 6px; }
+.wx-hilo { font-size: 15px; color: rgba(255,255,255,0.7); font-weight: 500; }
 
-.forecast-row { display: flex; gap: 6px; margin-top: 10px; flex-shrink: 0; }
-.fc { flex:1; background: rgba(255,255,255,0.06); border-radius: 8px; padding: 6px 4px; text-align: center; border: 0.5px solid rgba(255,255,255,0.08); }
-.fc-day  { font-size: 9px;  color: rgba(255,255,255,0.38); margin-bottom: 3px; }
-.fc-icon { font-size: 16px; color: rgba(255,255,255,0.8);  margin-bottom: 3px; display:block; }
-.fc-temp { font-size: 12px; font-weight: 500; color: #fff; }
-.fc-rain { font-size: 9px;  color: rgba(100,160,255,0.7);  margin-top: 2px; }
+.fc-row { display: flex; gap: 6px; margin-top: 10px; flex-shrink: 0; }
+.fc { flex:1; background: rgba(255,255,255,0.07); border-radius: 8px; padding: 8px 4px; text-align: center; border: 0.5px solid rgba(255,255,255,0.09); }
+.fc-day  { font-size: 10px; color: rgba(255,255,255,0.4);  margin-bottom: 4px; }
+.fc-ico  { font-size: 18px; color: rgba(255,255,255,0.85); margin-bottom: 4px; display: block; }
+.fc-tmp  { font-size: 13px; font-weight: 500; color: #fff; }
+.fc-rain { font-size: 10px; color: rgba(100,160,255,0.75); margin-top: 3px; }
 
 /* weather anims */
-@keyframes fall  { 0%{transform:translateY(-10px);opacity:0} 40%{opacity:1} 100%{transform:translateY(46px);opacity:0} }
-@keyframes sway  { 0%,100%{transform:rotate(-5deg)} 50%{transform:rotate(5deg)} }
-@keyframes pulse { 0%,100%{opacity:0.8;transform:scale(1)} 50%{opacity:1;transform:scale(1.07)} }
-@keyframes spin  { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-@keyframes bolt  { 0%,88%,100%{opacity:0} 90%,98%{opacity:1} }
+@keyframes fall  { 0%{transform:translateY(-10px);opacity:0}40%{opacity:1}100%{transform:translateY(46px);opacity:0} }
+@keyframes sway  { 0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)} }
+@keyframes pulse { 0%,100%{opacity:0.8;transform:scale(1)}50%{opacity:1;transform:scale(1.07)} }
+@keyframes spin  { from{transform:rotate(0deg)}to{transform:rotate(360deg)} }
+@keyframes bolt  { 0%,88%,100%{opacity:0}90%,98%{opacity:1} }
 
-/* ── PANEL 3: FOOT TRAFFIC ── */
-.traffic-big  { font-size: 52px; font-weight: 600; color: #fff; line-height: 1; }
-.traffic-sub  { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
-.badges { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
-.badge     { font-size: 10px; padding: 2px 8px; border-radius: 20px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
-.badge-up  { background: rgba(90,200,120,0.2); color: #7be0a0; }
-.chart-wrap { flex: 1; min-height: 0; position: relative; margin-top: 10px; }
+/* ═══ TRAFFIC ═══ */
+.traffic-card { flex: 1; }
+.traffic-top { display: flex; gap: 20px; align-items: flex-end; flex-shrink: 0; }
+.traffic-main { }
+.traffic-big { font-size: 54px; font-weight: 600; color: #fff; line-height: 1; }
+.traffic-lbl { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.traffic-side { padding-bottom: 6px; }
+.traffic-stat { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+.traffic-stat span { color: #fff; font-weight: 500; }
+.charts-wrap { flex: 1; min-height: 0; display: grid; grid-template-rows: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.chart-block { position: relative; min-height: 0; }
+.chart-lbl { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 3px; }
 
-/* ── AUDIT TABLE ── */
-.audit-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
-.audit-table th { font-size: 9px; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(83,22,32,0.38); padding: 0 8px 6px 0; text-align: left; font-weight: 500; border-bottom: 0.5px solid rgba(83,22,32,0.1); }
-.audit-table td { padding: 6px 8px 6px 0; border-bottom: 0.5px solid rgba(83,22,32,0.06); color: #2a0a0e; vertical-align: middle; }
+/* ═══ AUDIT ═══ */
+.audit-card { flex-shrink: 0; }
+.audit-table { width: 100%; border-collapse: collapse; }
+.audit-table th { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(83,22,32,0.38); padding: 0 8px 7px 0; text-align: left; font-weight: 500; border-bottom: 0.5px solid rgba(83,22,32,0.1); }
+.audit-table td { padding: 7px 8px 7px 0; border-bottom: 0.5px solid rgba(83,22,32,0.06); color: #1e0a0e; vertical-align: middle; font-size: 13px; }
 .audit-table tr:last-child td { border-bottom: none; }
-.tick     { width: 20px; height: 20px; border-radius: 50%; display:inline-flex; align-items:center; justify-content:center; font-size:11px; }
+.tick     { width: 22px; height: 22px; border-radius: 50%; display:inline-flex; align-items:center; justify-content:center; font-size:12px; }
 .tick-yes { background: #d4edda; color: #27773a; }
-.tick-no  { background: rgba(83,22,32,0.07); color: rgba(83,22,32,0.2); font-size:14px; line-height:1; }
-.act-badge { display:inline-block; background:#fde8e8; color:#a32d2d; border-radius:12px; padding:1px 7px; font-size:10px; font-weight:500; }
-.act-zero  { color:rgba(83,22,32,0.22); font-size:11px; }
+.tick-no  { background: rgba(83,22,32,0.07); color: rgba(83,22,32,0.2); font-size:15px; line-height:1; }
+.act-badge { display:inline-block; background:#fde8e8; color:#a32d2d; border-radius:12px; padding:2px 8px; font-size:11px; font-weight:500; }
+.act-zero  { color:rgba(83,22,32,0.22); font-size:12px; }
 .today-row td { color:rgba(83,22,32,0.35); font-style:italic; }
 
-/* ── EVO GO ── */
+/* ═══ EVO GO ═══ */
+.evo-card { flex: 1; }
 .evo-scroll-wrap  { flex:1; min-height:0; overflow:hidden; }
 .evo-scroll-inner { display:flex; flex-direction:column; }
-.evo-item { display:flex; align-items:center; gap:8px; padding:7px 0; border-bottom:0.5px solid rgba(83,22,32,0.07); }
+.evo-item { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:0.5px solid rgba(83,22,32,0.07); }
 .evo-item:last-child { border-bottom:none; }
-.evo-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
-.eu-urgent { background:#e24b4a; box-shadow:0 0 6px rgba(226,75,74,0.7); }
+.evo-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.eu-urgent { background:#e24b4a; box-shadow:0 0 7px rgba(226,75,74,0.75); }
 .eu-high   { background:#e24b4a; }
 .eu-med    { background:#ef9f27; }
 .eu-low    { background:#639922; }
 .evo-body  { flex:1; min-width:0; }
-.evo-title { font-size:11.5px; font-weight:500; color:#2a0a0e; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.evo-meta  { font-size:9px; color:#aaa; margin-top:1px; }
-.evo-cat   { font-size:9px; padding:2px 7px; border-radius:10px; flex-shrink:0; font-weight:500; }
+.evo-title { font-size:13px; font-weight:500; color:#1e0a0e; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.evo-meta  { font-size:10px; color:#aaa; margin-top:2px; }
+.evo-cat   { font-size:10px; padding:3px 8px; border-radius:10px; flex-shrink:0; font-weight:500; }
 .cat-maint { background:#e8eef8; color:#2d5096; }
 .cat-park  { background:#e8f4e8; color:#2d6b2d; }
 .cat-clean { background:#f0e8f8; color:#6b2d96; }
 .cat-ops   { background:#faeeda; color:#854f0b; }
-.evo-badge { font-size:9px; padding:2px 7px; border-radius:10px; flex-shrink:0; margin-left:2px; }
+.evo-badge { font-size:10px; padding:3px 8px; border-radius:10px; flex-shrink:0; margin-left:2px; }
 .ebh { background:#fcebeb; color:#a32d2d; }
 .ebm { background:#faeeda; color:#854f0b; }
 .ebl { background:#eaf3de; color:#3b6d11; }
@@ -159,78 +142,79 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 <body>
 <div class="dash">
 
-  <!-- ═══════ LEFT: three equal thirds ═══════ -->
+  <!-- ═══ LEFT ═══ -->
   <div class="left">
 
-    <!-- 1/3 — Logo + Clock -->
-    <div class="panel">
-      <div class="header-card">
-        <img class="logo" src="https://chadmik71.github.io/Valet/logo-maroon.png" alt="Chatswood Chase">
-        <div>
-          <div class="time-big" id="clock">--:--</div>
-          <div class="date-sub" id="datestr">--</div>
-        </div>
+    <!-- Header -->
+    <div class="header-card">
+      <img class="logo" src="https://chadmik71.github.io/Valet/logo-maroon.png" alt="Chatswood Chase">
+      <div>
+        <div class="time-big" id="clock">--:--</div>
+        <div class="date-sub" id="datestr">--</div>
       </div>
     </div>
 
-    <!-- 2/3 — Weather -->
-    <div class="panel">
-      <div class="weather-card">
-        <div class="label">Live weather — Chatswood NSW</div>
-        <div class="wx-top">
-          <div class="wx-anim" id="weather-anim"></div>
-          <div class="wx-center">
-            <div class="wx-temp" id="w-temp">--°</div>
-            <div class="wx-desc" id="w-desc">Loading...</div>
-            <div class="wx-meta" id="w-meta"></div>
-          </div>
-          <div class="wx-right">
-            <div class="wx-loc">Chatswood, NSW</div>
-            <div class="wx-hilo" id="w-hilo"></div>
-          </div>
+    <!-- Weather -->
+    <div class="card wx-card">
+      <div class="lbl">Live weather — Chatswood NSW</div>
+      <div class="wx-main">
+        <div class="wx-anim" id="weather-anim"></div>
+        <div class="wx-center">
+          <div class="wx-temp" id="w-temp">--°</div>
+          <div class="wx-desc" id="w-desc">Loading...</div>
+          <div class="wx-sub"  id="w-sub"></div>
         </div>
-        <div class="forecast-row" id="forecast-row">
-          <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-icon"></i><div class="fc-temp">--°</div><div class="fc-rain">--%</div></div>
-          <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-icon"></i><div class="fc-temp">--°</div><div class="fc-rain">--%</div></div>
-          <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-icon"></i><div class="fc-temp">--°</div><div class="fc-rain">--%</div></div>
-          <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-icon"></i><div class="fc-temp">--°</div><div class="fc-rain">--%</div></div>
-          <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-icon"></i><div class="fc-temp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="wx-right">
+          <div class="wx-loc">Chatswood, NSW</div>
+          <div class="wx-hilo" id="w-hilo">H: --° &nbsp; L: --°</div>
         </div>
+      </div>
+      <div class="fc-row" id="fc-row">
+        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
       </div>
     </div>
 
-    <!-- 3/3 — Foot Traffic -->
-    <div class="panel">
-      <div class="card">
-        <div class="label">Current foot traffic</div>
-        <div class="traffic-big" id="traffic-now">1,847</div>
-        <div class="traffic-sub">visitors on site right now</div>
-        <div class="badges">
-          <span class="badge badge-up">↑ 12% vs last Thu</span>
-          <span class="badge">Peak today: 12:30pm · 2,640</span>
+    <!-- Traffic -->
+    <div class="card traffic-card">
+      <div class="lbl">Foot traffic</div>
+      <div class="traffic-top">
+        <div class="traffic-main">
+          <div class="traffic-big" id="traffic-now">1,847</div>
+          <div class="traffic-lbl">on site right now</div>
         </div>
-        <div class="chart-wrap">
-          <canvas id="trafficChart"></canvas>
+        <div class="traffic-side">
+          <div class="traffic-stat">Today total &nbsp;<span id="t-total">8,214</span></div>
+          <div class="traffic-stat">Peak &nbsp;<span>2,640 at 12:30pm</span></div>
+          <div class="traffic-stat">vs last Thu &nbsp;<span style="color:#7be0a0">↑ 12%</span></div>
+        </div>
+      </div>
+      <div class="charts-wrap">
+        <div class="chart-block">
+          <div class="chart-lbl">Today — hourly flow</div>
+          <canvas id="chartDay" style="position:absolute;top:18px;left:0;right:0;bottom:0;width:100%;height:calc(100% - 18px)"></canvas>
+        </div>
+        <div class="chart-block">
+          <div class="chart-lbl">Last 7 days — daily total</div>
+          <canvas id="chartWeek" style="position:absolute;top:18px;left:0;right:0;bottom:0;width:100%;height:calc(100% - 18px)"></canvas>
         </div>
       </div>
     </div>
 
   </div>
 
-  <!-- ═══════ RIGHT ═══════ -->
+  <!-- ═══ RIGHT ═══ -->
   <div class="right">
 
     <!-- iAuditor -->
-    <div class="card-light iaud-card">
-      <div class="label-dark">iAuditor — daily inspections</div>
+    <div class="card-light audit-card">
+      <div class="lbl-dark">iAuditor — daily inspections</div>
       <table class="audit-table">
         <thead>
-          <tr>
-            <th>Date</th>
-            <th>Done</th>
-            <th>Completed by</th>
-            <th>Actions</th>
-          </tr>
+          <tr><th>Date</th><th>Done</th><th>Completed by</th><th>Actions</th></tr>
         </thead>
         <tbody>
           <tr class="today-row">
@@ -251,7 +235,7 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 
     <!-- Evo Go -->
     <div class="card-light evo-card">
-      <div class="label-dark">Evo Go — outstanding jobs</div>
+      <div class="lbl-dark">Evo Go — outstanding jobs</div>
       <div class="evo-scroll-wrap">
         <div class="evo-scroll-inner" id="evo-list"></div>
       </div>
@@ -271,166 +255,172 @@ function updateClock(){
 }
 updateClock(); setInterval(updateClock,10000);
 
-// ── TRAFFIC ──
-let base=1847;
-setInterval(()=>{base+=Math.round((Math.random()-0.48)*18);document.getElementById('traffic-now').textContent=base.toLocaleString();},7000);
+// ── TRAFFIC TICKER ──
+let base=1847, total=8214;
+setInterval(()=>{
+  const delta=Math.round((Math.random()-0.35)*20);
+  base+=delta; if(base<0)base=0;
+  total+=Math.max(0,delta);
+  document.getElementById('traffic-now').textContent=base.toLocaleString();
+  document.getElementById('t-total').textContent=total.toLocaleString();
+},7000);
 
-new Chart(document.getElementById('trafficChart'),{
-  type:'bar',
+// hourly data — realistic shopping centre curve
+const hourlyLabels=['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm'];
+const hourlyData=  [  80,  140,  310,  580,  920, 1340, 1820, 2640, 2380, 1950, 1640, 1420, 1180,  850,  520,  210];
+
+const weekLabels=['Fri','Sat','Sun','Mon','Tue','Wed','Thu'];
+const weekData=  [8200, 14300, 12800, 5400, 5900, 6300, 7100];
+
+const chartOpts = (isLine) => ({
+  responsive:true, maintainAspectRatio:false,
+  plugins:{ legend:{display:false}, tooltip:{enabled:false} },
+  scales:{
+    x:{ ticks:{color:'rgba(255,255,255,0.38)',font:{size:9}}, grid:{display:false}, border:{display:false} },
+    y:{ ticks:{color:'rgba(255,255,255,0.38)',font:{size:9},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v}, grid:{color:'rgba(255,255,255,0.05)'}, border:{display:false} }
+  },
+  elements: isLine ? { point:{radius:0}, line:{tension:0.4} } : {}
+});
+
+new Chart(document.getElementById('chartDay'),{
+  type:'line',
   data:{
-    labels:['Fri','Sat','Sun','Mon','Tue','Wed','Thu'],
+    labels:hourlyLabels,
     datasets:[{
-      data:[8200,14300,12800,5400,5900,6300,7100],
-      backgroundColor:['rgba(255,255,255,0.18)','rgba(255,255,255,0.55)','rgba(255,255,255,0.42)','rgba(255,255,255,0.1)','rgba(255,255,255,0.1)','rgba(255,255,255,0.14)','rgba(255,255,255,0.32)'],
-      borderColor:    ['rgba(255,255,255,0.35)','rgba(255,255,255,0.8)','rgba(255,255,255,0.65)','rgba(255,255,255,0.2)','rgba(255,255,255,0.2)','rgba(255,255,255,0.28)','rgba(255,255,255,0.55)'],
-      borderWidth:1, borderRadius:5
+      data:hourlyData,
+      borderColor:'rgba(255,255,255,0.7)',
+      backgroundColor:'rgba(255,255,255,0.07)',
+      fill:true, borderWidth:2
     }]
   },
-  options:{
-    responsive:true, maintainAspectRatio:false,
-    plugins:{legend:{display:false}},
-    scales:{
-      x:{ticks:{color:'rgba(255,255,255,0.4)',font:{size:9}},grid:{display:false},border:{display:false}},
-      y:{ticks:{color:'rgba(255,255,255,0.4)',font:{size:9},callback:v=>(v/1000).toFixed(0)+'k'},grid:{color:'rgba(255,255,255,0.05)'},border:{display:false}}
-    }
-  }
+  options:chartOpts(true)
+});
+
+new Chart(document.getElementById('chartWeek'),{
+  type:'bar',
+  data:{
+    labels:weekLabels,
+    datasets:[{
+      data:weekData,
+      backgroundColor:weekData.map((_,i)=>i===6?'rgba(255,255,255,0.55)':'rgba(255,255,255,0.18)'),
+      borderColor:weekData.map((_,i)=>i===6?'rgba(255,255,255,0.8)':'rgba(255,255,255,0.35)'),
+      borderWidth:1, borderRadius:4
+    }]
+  },
+  options:chartOpts(false)
 });
 
 // ── WEATHER ANIMATION ──
-function buildWeatherAnim(code){
+function buildAnim(code){
   const el=document.getElementById('weather-anim');
   el.innerHTML='';
   const ns='http://www.w3.org/2000/svg';
   const svg=document.createElementNS(ns,'svg');
-  svg.setAttribute('viewBox','0 0 90 90');svg.setAttribute('width','90');svg.setAttribute('height','90');
-  svg.style.overflow='visible';
-
-  const isSun=code===0, isMixed=code>=1&&code<=2, isCloud=code===3;
-  const isFog=code>=45&&code<=48;
-  const isRain=(code>=51&&code<=67)||(code>=80&&code<=82);
-  const isSnow=code>=71&&code<=77, isStorm=code>=95&&code<=99;
-
-  const mk=(tag,attrs,parent)=>{const e=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));(parent||svg).appendChild(e);return e;};
-
-  if(isSun||isMixed){
-    const g=document.createElementNS(ns,'g');
-    g.style.transformOrigin='45px 45px';g.style.animation='spin 12s linear infinite';
-    for(let i=0;i<8;i++){const a=(i*45)*Math.PI/180;mk('line',{x1:45+22*Math.cos(a),y1:45+22*Math.sin(a),x2:45+31*Math.cos(a),y2:45+31*Math.sin(a),stroke:'#f5c84a','stroke-width':'3','stroke-linecap':'round'},g);}
+  svg.setAttribute('viewBox','0 0 88 88');svg.setAttribute('width','88');svg.setAttribute('height','88');svg.style.overflow='visible';
+  const mk=(tag,a,p)=>{const e=document.createElementNS(ns,tag);Object.entries(a).forEach(([k,v])=>e.setAttribute(k,v));(p||svg).appendChild(e);return e;};
+  const isSun=code===0,isMix=code>=1&&code<=2,isCld=code===3;
+  const isFog=code>=45&&code<=48,isRain=(code>=51&&code<=67)||(code>=80&&code<=82);
+  const isSnow=code>=71&&code<=77,isStorm=code>=95&&code<=99;
+  if(isSun||isMix){
+    const g=document.createElementNS(ns,'g');g.style.transformOrigin='44px 44px';g.style.animation='spin 12s linear infinite';
+    for(let i=0;i<8;i++){const a=(i*45)*Math.PI/180;mk('line',{x1:44+22*Math.cos(a),y1:44+22*Math.sin(a),x2:44+31*Math.cos(a),y2:44+31*Math.sin(a),stroke:'#f5c84a','stroke-width':'3','stroke-linecap':'round'},g);}
     svg.appendChild(g);
-    const sc=mk('circle',{cx:45,cy:45,r:18,fill:'#f5c84a'});sc.style.animation='pulse 3s ease-in-out infinite';
+    const sc=mk('circle',{cx:44,cy:44,r:17,fill:'#f5c84a'});sc.style.animation='pulse 3s ease-in-out infinite';
   }
-
-  if(isMixed||isCloud||isFog||isRain||isSnow||isStorm){
+  if(isMix||isCld||isFog||isRain||isSnow||isStorm){
     const cg=document.createElementNS(ns,'g');
-    const cf=isRain||isStorm?'rgba(150,185,225,0.95)':'rgba(195,215,238,0.9)';
-    const ox=isMixed?12:0, oy=isMixed?8:0;
-    mk('circle',{cx:28+ox,cy:38+oy,r:13,fill:cf},cg);
-    mk('circle',{cx:44+ox,cy:30+oy,r:17,fill:cf},cg);
-    mk('circle',{cx:60+ox,cy:38+oy,r:12,fill:cf},cg);
-    mk('rect',  {x:15+ox,y:38+oy,width:58,height:14,rx:7,fill:cf},cg);
-    if(!isMixed){cg.style.animation='sway 5s ease-in-out infinite';cg.style.transformOrigin='45px 36px';}
+    const cf=isRain||isStorm?'rgba(145,185,225,0.95)':'rgba(195,215,238,0.9)';
+    const ox=isMix?10:0,oy=isMix?8:0;
+    mk('circle',{cx:26+ox,cy:38+oy,r:12,fill:cf},cg);mk('circle',{cx:42+ox,cy:30+oy,r:16,fill:cf},cg);mk('circle',{cx:58+ox,cy:38+oy,r:11,fill:cf},cg);
+    mk('rect',{x:14+ox,y:37+oy,width:56,height:13,rx:6,fill:cf},cg);
+    if(!isMix){cg.style.animation='sway 5s ease-in-out infinite';cg.style.transformOrigin='44px 34px';}
     svg.appendChild(cg);
   }
-
   if(isRain||isStorm){
-    [[26,56],[36,62],[46,56],[56,62],[31,68],[51,68]].forEach(([x,y],i)=>{
+    [[24,56],[34,62],[44,56],[54,62],[29,68],[49,68]].forEach(([x,y],i)=>{
       const d=mk('line',{x1:x,y1:y,x2:x-4,y2:y+10,stroke:'rgba(100,170,255,0.9)','stroke-width':'2.5','stroke-linecap':'round'});
       d.style.animation=`fall 1.3s ease-in ${(i*0.19).toFixed(2)}s infinite`;
     });
   }
   if(isSnow){
-    [[26,56],[40,64],[56,56],[32,70],[52,70]].forEach(([x,y],i)=>{
-      const t=document.createElementNS(ns,'text');
-      t.setAttribute('x',x);t.setAttribute('y',y);t.setAttribute('font-size','12');
+    [[24,56],[38,64],[54,56],[30,70],[50,70]].forEach(([x,y],i)=>{
+      const t=document.createElementNS(ns,'text');t.setAttribute('x',x);t.setAttribute('y',y);t.setAttribute('font-size','12');
       t.setAttribute('fill','rgba(180,220,255,0.9)');t.setAttribute('text-anchor','middle');
-      t.textContent='❄';t.style.animation=`fall 2.2s ease-in ${(i*0.32).toFixed(2)}s infinite`;
-      svg.appendChild(t);
+      t.textContent='❄';t.style.animation=`fall 2.2s ease-in ${(i*0.32).toFixed(2)}s infinite`;svg.appendChild(t);
     });
   }
-  if(isStorm){
-    const p=mk('polyline',{points:'48,50 42,62 48,62 42,76',fill:'none',stroke:'#f5c84a','stroke-width':'3.5','stroke-linecap':'round','stroke-linejoin':'round'});
-    p.style.animation='bolt 2.5s ease infinite';
-  }
-  if(isFog){
-    [44,54,64].forEach((y,i)=>{
-      const r=mk('rect',{x:12,y,width:66,height:4,rx:2,fill:'rgba(200,220,240,0.55)'});
-      r.style.animation=`sway ${2.5+i*0.5}s ease-in-out ${i*0.3}s infinite`;
-      r.style.transformOrigin='45px '+y+'px';
-    });
-  }
+  if(isStorm){const p=mk('polyline',{points:'47,50 41,62 47,62 41,76',fill:'none',stroke:'#f5c84a','stroke-width':'3.5','stroke-linecap':'round','stroke-linejoin':'round'});p.style.animation='bolt 2.5s ease infinite';}
+  if(isFog){[44,54,64].forEach((y,i)=>{const r=mk('rect',{x:10,y,width:68,height:4,rx:2,fill:'rgba(200,220,240,0.55)'});r.style.animation=`sway ${2.5+i*0.5}s ease-in-out ${i*0.3}s infinite`;r.style.transformOrigin='44px '+y+'px';});}
   el.appendChild(svg);
 }
 
 // ── WEATHER API ──
 const WD={0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Foggy',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow grains',80:'Rain showers',81:'Heavy showers',82:'Violent showers',95:'Thunderstorm',96:'Thunderstorm & hail',99:'Thunderstorm & hail'};
-const WI=c=>c===0?'ti-sun':c<=2?'ti-cloud-sun':c===3?'ti-cloud':c<=48?'ti-cloud-fog':c<=57?'ti-cloud-drizzle':c<=67?'ti-cloud-rain':c<=77?'ti-snowflake':c<=82?'ti-cloud-storm':'ti-bolt';
+const WI=c=>{ if(c===0)return'ti-sun'; if(c<=2)return'ti-cloud-sun'; if(c===3)return'ti-cloud'; if(c<=48)return'ti-cloud-fog'; if(c<=57)return'ti-cloud-drizzle'; if(c<=67)return'ti-cloud-rain'; if(c<=77)return'ti-snowflake'; if(c<=82)return'ti-cloud-storm'; return'ti-bolt'; };
 const DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
 async function loadWeather(){
   try{
     const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=-33.797&longitude=151.183&current=temperature_2m,weathercode,relativehumidity_2m,apparent_temperature,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Australia%2FSydney&forecast_days=5');
     const d=await r.json();
-    const temp=Math.round(d.current.temperature_2m);
-    const feels=Math.round(d.current.apparent_temperature);
-    const hum=d.current.relativehumidity_2m;
-    const wind=Math.round(d.current.windspeed_10m);
-    const code=d.current.weathercode;
-    const hi=Math.round(d.daily.temperature_2m_max[0]);
-    const lo=Math.round(d.daily.temperature_2m_min[0]);
+    const cur=d.current, daily=d.daily;
+    const temp=Math.round(cur.temperature_2m);
+    const feels=Math.round(cur.apparent_temperature);
+    const hum=cur.relativehumidity_2m;
+    const wind=Math.round(cur.windspeed_10m);
+    const code=cur.weathercode;
     document.getElementById('w-temp').textContent=temp+'°';
     document.getElementById('w-desc').textContent=WD[code]||'Unknown';
-    document.getElementById('w-meta').textContent='Feels like '+feels+'° · Humidity '+hum+'% · Wind '+wind+' km/h';
-    document.getElementById('w-hilo').textContent='H: '+hi+'°  L: '+lo+'°';
-    buildWeatherAnim(code);
+    document.getElementById('w-sub').textContent='Feels like '+feels+'°  ·  Humidity '+hum+'%  ·  Wind '+wind+' km/h';
+    document.getElementById('w-hilo').textContent='H: '+Math.round(daily.temperature_2m_max[0])+'°  ·  L: '+Math.round(daily.temperature_2m_min[0])+'°';
+    buildAnim(code);
+    // 5-day forecast — guard against missing data
     document.querySelectorAll('.fc').forEach((el,i)=>{
-      const t=d.daily.time[i];if(!t)return;
-      const day=DN[new Date(t).getDay()];
-      const max=Math.round(d.daily.temperature_2m_max[i]);
-      const rain=d.daily.precipitation_probability_max[i];
-      const wc=d.daily.weathercode[i];
-      el.innerHTML=`<div class="fc-day">${day}</div><i class="ti ${WI(wc)} fc-icon"></i><div class="fc-temp">${max}°</div><div class="fc-rain">${rain}%</div>`;
+      const t=daily.time[i];
+      const wc=daily.weathercode[i];
+      if(!t || wc===undefined || wc===null){ el.querySelector('.fc-ico').className='ti ti-cloud fc-ico'; return; }
+      const day=DN[new Date(t+'T00:00:00').getDay()];
+      const max=Math.round(daily.temperature_2m_max[i]);
+      const rain=daily.precipitation_probability_max[i]??'--';
+      el.innerHTML=`<div class="fc-day">${day}</div><i class="ti ${WI(wc)} fc-ico"></i><div class="fc-tmp">${max}°</div><div class="fc-rain">${rain}%</div>`;
     });
-  }catch(e){buildWeatherAnim(61);}
+  }catch(e){ buildAnim(61); }
 }
 loadWeather(); setInterval(loadWeather,600000);
 
 // ── EVO GO ──
-const EVO_JOBS=[
-  {title:'Escalator E3 — fault alarm active',       meta:'Raised today 06:42',                    cat:'Maintenance',cat:'Maintenance',catC:'cat-maint',dot:'eu-urgent',badge:'ebh',bl:'Urgent'},
-  {title:'Loading dock roller door — not closing',   meta:'Raised today 08:15',                    cat:'Operations', catC:'cat-ops',  dot:'eu-urgent',badge:'ebh',bl:'Urgent'},
-  {title:'HVAC unit failure — Level 3 West',         meta:'Raised yesterday · Parts on order',     cat:'Maintenance',catC:'cat-maint',dot:'eu-high',  badge:'ebh',bl:'High'},
-  {title:'P2 car park lighting — 6 bays out',        meta:'Raised 2 days ago',                     cat:'Car Park',   catC:'cat-park', dot:'eu-high',  badge:'ebh',bl:'High'},
-  {title:'Myer entry — ceiling tile fallen',         meta:'Raised 2 days ago · Scheduled Fri',     cat:'Maintenance',catC:'cat-maint',dot:'eu-med',   badge:'ebm',bl:'Medium'},
-  {title:'Food court — grease trap overflow',        meta:'Raised 2 days ago',                     cat:'Cleaners',   catC:'cat-clean',dot:'eu-med',   badge:'ebm',bl:'Medium'},
-  {title:'Bathroom L1 North — hand dryer fault',    meta:'Raised 3 days ago',                     cat:'Maintenance',catC:'cat-maint',dot:'eu-med',   badge:'ebm',bl:'Medium'},
-  {title:'Exterior signage — bulb replacement',      meta:'Raised 3 days ago · Awaiting approval', cat:'Operations', catC:'cat-ops',  dot:'eu-low',   badge:'ebl',bl:'Low'},
-  {title:'Loading bay — line marking faded',         meta:'Raised 4 days ago',                     cat:'Car Park',   catC:'cat-park', dot:'eu-low',   badge:'ebl',bl:'Low'},
-  {title:'Common area carpet — stain treatment',     meta:'Raised 4 days ago',                     cat:'Cleaners',   catC:'cat-clean',dot:'eu-low',   badge:'ebl',bl:'Low'},
-  {title:'North entrance auto door — slow response', meta:'Raised 5 days ago',                     cat:'Maintenance',catC:'cat-maint',dot:'eu-low',   badge:'ebl',bl:'Low'},
+const EVO=[
+  {t:'Escalator E3 — fault alarm active',       m:'Raised today 06:42',                    cat:'Maintenance',cc:'cat-maint',d:'eu-urgent',b:'ebh',bl:'Urgent'},
+  {t:'Loading dock roller door — not closing',   m:'Raised today 08:15',                    cat:'Operations', cc:'cat-ops',  d:'eu-urgent',b:'ebh',bl:'Urgent'},
+  {t:'HVAC unit failure — Level 3 West',         m:'Raised yesterday · Parts on order',     cat:'Maintenance',cc:'cat-maint',d:'eu-high',  b:'ebh',bl:'High'},
+  {t:'P2 car park lighting — 6 bays out',        m:'Raised 2 days ago',                     cat:'Car Park',   cc:'cat-park', d:'eu-high',  b:'ebh',bl:'High'},
+  {t:'Myer entry — ceiling tile fallen',         m:'Raised 2 days ago · Scheduled Fri',     cat:'Maintenance',cc:'cat-maint',d:'eu-med',   b:'ebm',bl:'Medium'},
+  {t:'Food court — grease trap overflow',        m:'Raised 2 days ago',                     cat:'Cleaners',   cc:'cat-clean',d:'eu-med',   b:'ebm',bl:'Medium'},
+  {t:'Bathroom L1 North — hand dryer fault',     m:'Raised 3 days ago',                     cat:'Maintenance',cc:'cat-maint',d:'eu-med',   b:'ebm',bl:'Medium'},
+  {t:'Exterior signage — bulb replacement',      m:'Raised 3 days ago · Awaiting approval', cat:'Operations', cc:'cat-ops',  d:'eu-low',   b:'ebl',bl:'Low'},
+  {t:'Loading bay — line marking faded',         m:'Raised 4 days ago',                     cat:'Car Park',   cc:'cat-park', d:'eu-low',   b:'ebl',bl:'Low'},
+  {t:'Common area carpet — stain treatment',     m:'Raised 4 days ago',                     cat:'Cleaners',   cc:'cat-clean',d:'eu-low',   b:'ebl',bl:'Low'},
+  {t:'North entrance auto door — slow response', m:'Raised 5 days ago',                     cat:'Maintenance',cc:'cat-maint',d:'eu-low',   b:'ebl',bl:'Low'},
 ];
-
-document.getElementById('evo-list').innerHTML=EVO_JOBS.map(j=>`
+document.getElementById('evo-list').innerHTML=EVO.map(j=>`
   <div class="evo-item">
-    <div class="evo-dot ${j.dot}"></div>
-    <div class="evo-body">
-      <div class="evo-title">${j.title}</div>
-      <div class="evo-meta">${j.meta}</div>
-    </div>
-    <span class="evo-cat ${j.catC}">${j.cat}</span>
-    <span class="evo-badge ${j.badge}">${j.bl}</span>
+    <div class="evo-dot ${j.d}"></div>
+    <div class="evo-body"><div class="evo-title">${j.t}</div><div class="evo-meta">${j.m}</div></div>
+    <span class="evo-cat ${j.cc}">${j.cat}</span>
+    <span class="evo-badge ${j.b}">${j.bl}</span>
   </div>`).join('');
 
+// autoscroll
 (function(){
-  const wrap=document.querySelector('.evo-scroll-wrap');
+  const w=document.querySelector('.evo-scroll-wrap');
   let pos=0,dir=1,pause=0;
   setInterval(()=>{
     if(pause>0){pause--;return;}
-    const max=wrap.scrollHeight-wrap.clientHeight;
-    if(max<=0)return;
+    const max=w.scrollHeight-w.clientHeight;if(max<=0)return;
     pos+=dir*0.5;
-    if(pos>=max){pos=max;dir=-1;pause=80;}
-    if(pos<=0)  {pos=0;  dir=1; pause=80;}
-    wrap.scrollTop=pos;
+    if(pos>=max){pos=max;dir=-1;pause=90;}
+    if(pos<=0)  {pos=0;  dir=1; pause=90;}
+    w.scrollTop=pos;
   },30);
 })();
 </script>
