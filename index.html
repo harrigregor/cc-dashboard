@@ -4,51 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chatswood Chase — Centre Dashboard</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
 
-.dash {
-  width: 100vw; height: 100vh;
-  padding: 12px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.left, .right { display: flex; flex-direction: column; gap: 8px; height: 100%; min-height: 0; }
+.dash { width:100vw; height:100vh; padding:12px; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.left, .right { display:flex; flex-direction:column; gap:8px; height:100%; min-height:0; }
 
-.card       { background: rgba(255,255,255,0.08); border-radius: 12px; border: 0.5px solid rgba(255,255,255,0.12); display: flex; flex-direction: column; min-height: 0; padding: 14px 20px; }
-.card-light { background: #f7f0f1; border-radius: 12px; border: 0.5px solid rgba(83,22,32,0.12); display: flex; flex-direction: column; min-height: 0; padding: 14px 20px; }
+.card       { background:rgba(255,255,255,0.08); border-radius:12px; border:0.5px solid rgba(255,255,255,0.12); display:flex; flex-direction:column; min-height:0; padding:14px 20px; }
+.card-light { background:#f7f0f1; border-radius:12px; border:0.5px solid rgba(83,22,32,0.12); display:flex; flex-direction:column; min-height:0; padding:14px 20px; }
 
-.lbl      { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; font-weight: 800; margin-bottom: 10px; flex-shrink: 0; }
-.lbl-dark { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #531620; font-weight: 800; margin-bottom: 10px; flex-shrink: 0; }
+.lbl      { font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:#fff;    font-weight:800; margin-bottom:10px; flex-shrink:0; }
+.lbl-dark { font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:#531620; font-weight:800; margin-bottom:10px; flex-shrink:0; }
 
 /* ═══ HEADER ═══ */
-.header-card { background: #f7f0f1; border-radius: 12px; padding: 12px 22px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-.logo     { height: 50px; filter: brightness(0) saturate(100%) invert(9%) sepia(57%) saturate(2600%) hue-rotate(333deg) brightness(80%) contrast(95%); opacity:0.9; }
-.time-big { font-size: 56px; font-weight: 300; color: #531620; line-height: 1; text-align: right; }
-.date-sub { font-size: 15px; color: #531620; margin-top: 4px; text-align: right; font-weight: 300; opacity: 0.75; }
+.header-card { background:#f7f0f1; border-radius:12px; padding:12px 22px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+.logo     { height:50px; filter:brightness(0) saturate(100%) invert(9%) sepia(57%) saturate(2600%) hue-rotate(333deg) brightness(80%) contrast(95%); opacity:0.9; }
+.time-big { font-size:56px; font-weight:300; color:#531620; line-height:1; text-align:right; }
+.date-sub { font-size:15px; color:#531620; margin-top:4px; text-align:right; opacity:0.65; }
 
 /* ═══ WEATHER ═══ */
-.wx-card { flex-shrink: 0; }
-.wx-body { display: flex; align-items: center; gap: 10px; }
-.wx-anim-wrap { width: 80px; height: 68px; overflow: hidden; flex-shrink: 0; }
-.wx-anim      { width: 80px; height: 80px; }
-.wx-center    { flex: 1; }
-.wx-temp      { font-size: 54px; font-weight: 300; color: #fff; line-height: 1; }
-.wx-desc      { font-size: 16px; color: rgba(255,255,255,0.75); margin-top: 2px; }
-.wx-sub       { font-size: 12px; color: rgba(255,255,255,0.42); margin-top: 5px; }
-.wx-right     { text-align: right; flex-shrink: 0; }
-.wx-loc       { font-size: 12px; color: rgba(255,255,255,0.38); margin-bottom: 5px; }
-.wx-hilo      { font-size: 16px; color: rgba(255,255,255,0.72); font-weight: 500; }
-.fc-row { display: flex; gap: 6px; margin-top: 10px; }
-.fc     { flex:1; background: rgba(255,255,255,0.07); border-radius: 8px; padding: 8px 4px; text-align: center; border: 0.5px solid rgba(255,255,255,0.09); }
-.fc-day  { font-size: 11px; color: rgba(255,255,255,0.4); margin-bottom: 4px; }
-.fc-ico  { font-size: 20px; color: rgba(255,255,255,0.85); margin-bottom: 4px; display: block; }
-.fc-tmp  { font-size: 14px; font-weight: 600; color: #fff; }
-.fc-rain { font-size: 11px; color: rgba(100,160,255,0.85); margin-top: 3px; }
+.wx-card { flex-shrink:0; }
+.wx-body { display:flex; align-items:center; gap:10px; }
+.wx-anim-wrap { width:80px; height:68px; overflow:hidden; flex-shrink:0; }
+.wx-anim      { width:80px; height:80px; }
+.wx-center    { flex:1; }
+.wx-temp      { font-size:54px; font-weight:300; color:#fff; line-height:1; }
+.wx-desc      { font-size:16px; color:rgba(255,255,255,0.75); margin-top:2px; }
+.wx-sub       { font-size:12px; color:rgba(255,255,255,0.42); margin-top:5px; }
+.wx-right     { text-align:right; flex-shrink:0; }
+.wx-loc       { font-size:12px; color:rgba(255,255,255,0.38); margin-bottom:5px; }
+.wx-hilo      { font-size:16px; color:rgba(255,255,255,0.72); font-weight:500; }
+
+.fc-row { display:flex; gap:6px; margin-top:10px; }
+.fc     { flex:1; background:rgba(255,255,255,0.07); border-radius:8px; padding:8px 4px; text-align:center; border:0.5px solid rgba(255,255,255,0.09); }
+.fc-day  { font-size:11px; color:rgba(255,255,255,0.4); margin-bottom:4px; }
+.fc-ico  { width:24px; height:24px; margin:0 auto 4px; display:block; }
+.fc-tmp  { font-size:14px; font-weight:600; color:#fff; }
+.fc-rain { font-size:11px; color:rgba(100,160,255,0.85); margin-top:3px; }
 
 @keyframes fall  { 0%{transform:translateY(-8px);opacity:0}40%{opacity:1}100%{transform:translateY(40px);opacity:0} }
 @keyframes sway  { 0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)} }
@@ -57,46 +51,45 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 @keyframes bolt  { 0%,88%,100%{opacity:0}90%,98%{opacity:1} }
 
 /* ═══ TRAFFIC ═══ */
-.traffic-card  { flex: 1; }
-.traffic-top   { display: flex; align-items: flex-start; justify-content: space-between; flex-shrink: 0; }
-.traffic-left  { }
-.traffic-big   { font-size: 68px; font-weight: 700; color: #fff; line-height: 1; }
-.traffic-lbl   { font-size: 14px; color: rgba(255,255,255,0.38); margin-top: 3px; }
-.traffic-stats { text-align: right; display: flex; flex-direction: column; gap: 7px; padding-top: 6px; }
-.tstat         { font-size: 15px; color: rgba(255,255,255,0.45); }
-.tstat strong  { color: #fff; font-weight: 700; font-size: 20px; }
-.tstat-up      { color: #4ecb71; font-weight: 700; font-size: 20px; }
-.charts-wrap   { flex: 1; min-height: 0; display: grid; grid-template-rows: 1fr 1fr; gap: 10px; margin-top: 14px; }
-.chart-block   { min-height: 0; display: flex; flex-direction: column; }
-.chart-lbl-sm  { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 4px; flex-shrink: 0; font-weight: 600; }
-.chart-block canvas { flex: 1; min-height: 0; width: 100% !important; }
+.traffic-card  { flex:1; }
+.traffic-top   { display:flex; align-items:flex-start; justify-content:space-between; flex-shrink:0; }
+.traffic-big   { font-size:68px; font-weight:700; color:#fff; line-height:1; }
+.traffic-lbl   { font-size:14px; color:rgba(255,255,255,0.38); margin-top:3px; }
+.traffic-stats { text-align:right; display:flex; flex-direction:column; gap:7px; padding-top:6px; }
+.tstat         { font-size:15px; color:rgba(255,255,255,0.45); }
+.tstat strong  { color:#fff; font-weight:700; font-size:20px; }
+.tstat-up      { color:#4ecb71; font-weight:700; font-size:20px; }
+.charts-wrap   { flex:1; min-height:0; display:grid; grid-template-rows:1fr 1fr; gap:10px; margin-top:14px; }
+.chart-block   { min-height:0; display:flex; flex-direction:column; }
+.chart-lbl-sm  { font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:4px; flex-shrink:0; font-weight:600; }
+.chart-block canvas { flex:1; min-height:0; width:100% !important; }
 
 /* ═══ AUDIT ═══ */
-.audit-card { flex-shrink: 0; }
-.audit-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-.audit-table th { font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #531620; padding: 0 0 8px 0; font-weight: 800; border-bottom: 1px solid rgba(83,22,32,0.2); text-align: left; }
-.audit-table th.center { text-align: center; }
-.audit-table td { padding: 8px 0; border-bottom: 0.5px solid rgba(83,22,32,0.06); color: #1e0a0e; vertical-align: middle; font-size: 14px; text-align: left; }
-.audit-table td.center { text-align: center; }
-.audit-table tr:last-child td { border-bottom: none; }
-.tick     { width: 24px; height: 24px; border-radius: 50%; display:inline-flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; }
-.tick-yes { background: #27a84a; color: #fff; }
-.tick-no  { background: rgba(83,22,32,0.1); color: rgba(83,22,32,0.25); font-size:16px; }
+.audit-card { flex-shrink:0; }
+.audit-table { width:100%; border-collapse:collapse; table-layout:fixed; }
+.audit-table th { font-size:11px; letter-spacing:0.07em; text-transform:uppercase; color:#531620; padding:0 0 8px 0; font-weight:800; border-bottom:1px solid rgba(83,22,32,0.2); text-align:left; }
+.audit-table th.center { text-align:center; }
+.audit-table td { padding:8px 0; border-bottom:0.5px solid rgba(83,22,32,0.06); color:#1e0a0e; vertical-align:middle; font-size:14px; text-align:left; }
+.audit-table td.center { text-align:center; }
+.audit-table tr:last-child td { border-bottom:none; }
+.tick     { width:24px; height:24px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; }
+.tick-yes { background:#27a84a; color:#fff; }
+.tick-no  { background:rgba(83,22,32,0.1); color:rgba(83,22,32,0.25); font-size:16px; }
 .act-badge { display:inline-block; background:#e03030; color:#fff; border-radius:20px; padding:3px 10px; font-size:13px; font-weight:700; }
 .act-zero  { color:rgba(83,22,32,0.2); font-size:13px; }
 .today-row td { color:rgba(83,22,32,0.35); font-style:italic; }
 
 /* ═══ EVO GO ═══ */
-.evo-card { flex: 1; display: flex; flex-direction: column; min-height: 0; }
-.evo-table-wrap { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
-.evo-head-table, .evo-body-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-.evo-head-table colgroup col:nth-child(1), .evo-body-table colgroup col:nth-child(1) { width: 42%; }
-.evo-head-table colgroup col:nth-child(2), .evo-body-table colgroup col:nth-child(2) { width: 18%; }
-.evo-head-table colgroup col:nth-child(3), .evo-body-table colgroup col:nth-child(3) { width: 16%; }
-.evo-head-table colgroup col:nth-child(4), .evo-body-table colgroup col:nth-child(4) { width: 14%; }
+.evo-card { flex:1; display:flex; flex-direction:column; min-height:0; }
+.evo-table-wrap { flex:1; min-height:0; overflow:hidden; display:flex; flex-direction:column; }
+.evo-head-table, .evo-body-table { width:100%; border-collapse:collapse; table-layout:fixed; }
+.evo-head-table colgroup col:nth-child(1), .evo-body-table colgroup col:nth-child(1) { width:42%; }
+.evo-head-table colgroup col:nth-child(2), .evo-body-table colgroup col:nth-child(2) { width:18%; }
+.evo-head-table colgroup col:nth-child(3), .evo-body-table colgroup col:nth-child(3) { width:16%; }
+.evo-head-table colgroup col:nth-child(4), .evo-body-table colgroup col:nth-child(4) { width:14%; }
 .evo-head-table th { font-size:11px; letter-spacing:0.07em; text-transform:uppercase; color:#531620; padding:0 0 8px 0; font-weight:800; border-bottom:1px solid rgba(83,22,32,0.2); text-align:left; }
 .evo-head-table th.center { text-align:center; }
-.evo-scroll-body { flex: 1; min-height: 0; overflow: hidden; }
+.evo-scroll-body { flex:1; min-height:0; overflow:hidden; }
 .evo-body-table td { padding:8px 0; border-bottom:0.5px solid rgba(83,22,32,0.06); vertical-align:middle; font-size:13px; color:#1e0a0e; text-align:left; }
 .evo-body-table td.center { text-align:center; }
 .evo-body-table tr:last-child td { border-bottom:none; }
@@ -105,9 +98,16 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 .eu-urgent { box-shadow:0 0 7px rgba(226,75,74,0.9); }
 .eu-med    { background:#ef9f27; }
 .eu-low    { background:#3a9e3a; }
-.evo-job-title  { font-size:13px; font-weight:500; color:#1e0a0e; }
-.evo-resp-plain { font-size:13px; color:rgba(83,22,32,0.5); }
-.evo-date-col   { font-size:13px; color:rgba(83,22,32,0.5); }
+.evo-job-title { font-size:13px; font-weight:500; color:#1e0a0e; }
+
+/* Responsibility — same pill style as urgency but neutral */
+.resp-pill { display:inline-block; background:rgba(83,22,32,0.1); color:#531620; border-radius:20px; padding:3px 10px; font-size:11px; font-weight:700; }
+.resp-maint { background:#dce6f5; color:#1e3f7a; }
+.resp-ops   { background:#fdf0dc; color:#7a4a00; }
+.resp-park  { background:#dff0df; color:#1a5c1a; }
+.resp-clean { background:#ede0f5; color:#5c1a7a; }
+
+.evo-date-col { font-size:13px; color:rgba(83,22,32,0.5); }
 .urg { display:inline-block; padding:4px 12px; border-radius:20px; font-size:11px; font-weight:700; }
 .urg-urgent,.urg-high { background:#e03030; color:#fff; }
 .urg-med              { background:#ef9f27; color:#fff; }
@@ -116,8 +116,6 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 </head>
 <body>
 <div class="dash">
-
-  <!-- ═══ LEFT ═══ -->
   <div class="left">
 
     <div class="header-card">
@@ -143,18 +141,18 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
         </div>
       </div>
       <div class="fc-row" id="fc-row">
-        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
-        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
-        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
-        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
-        <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="fc"><div class="fc-day">--</div><div class="fc-ico" id="fci0"></div><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="fc"><div class="fc-day">--</div><div class="fc-ico" id="fci1"></div><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="fc"><div class="fc-day">--</div><div class="fc-ico" id="fci2"></div><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="fc"><div class="fc-day">--</div><div class="fc-ico" id="fci3"></div><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
+        <div class="fc"><div class="fc-day">--</div><div class="fc-ico" id="fci4"></div><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
       </div>
     </div>
 
     <div class="card traffic-card">
       <div class="lbl">Foot traffic</div>
       <div class="traffic-top">
-        <div class="traffic-left">
+        <div>
           <div class="traffic-big" id="traffic-now">1,847</div>
           <div class="traffic-lbl">on site right now</div>
         </div>
@@ -178,34 +176,26 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 
   </div>
 
-  <!-- ═══ RIGHT ═══ -->
   <div class="right">
 
     <div class="card-light audit-card">
       <div class="lbl-dark">iAuditor — Daily Inspections</div>
       <table class="audit-table">
         <colgroup><col style="width:36%"><col style="width:14%"><col style="width:32%"><col style="width:18%"></colgroup>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th class="center">Done</th>
-            <th class="center">Completed By</th>
-            <th class="center">Actions</th>
-          </tr>
-        </thead>
+        <thead><tr>
+          <th>Date</th><th class="center">Done</th><th class="center">Completed By</th><th class="center">Actions</th>
+        </tr></thead>
         <tbody>
           <tr class="today-row">
-            <td>Today</td>
-            <td class="center"><span class="tick tick-no">–</span></td>
-            <td class="center" style="color:rgba(83,22,32,0.3)">—</td>
-            <td class="center"><span class="act-zero">—</span></td>
+            <td>Today</td><td class="center"><span class="tick tick-no">–</span></td>
+            <td class="center" style="color:rgba(83,22,32,0.3)">—</td><td class="center"><span class="act-zero">—</span></td>
           </tr>
-          <tr><td>Wed 24 Jun</td><td class="center"><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td class="center">Marcus</td><td class="center"><span class="act-zero">0</span></td></tr>
-          <tr><td>Tue 23 Jun</td><td class="center"><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td class="center">Sarah</td><td class="center"><span class="act-badge">2</span></td></tr>
-          <tr><td>Mon 22 Jun</td><td class="center"><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td class="center">Marcus</td><td class="center"><span class="act-zero">0</span></td></tr>
-          <tr><td>Sun 21 Jun</td><td class="center"><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td class="center">Jamie</td><td class="center"><span class="act-badge">1</span></td></tr>
-          <tr><td>Sat 20 Jun</td><td class="center"><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td class="center">Sarah</td><td class="center"><span class="act-zero">0</span></td></tr>
-          <tr><td>Fri 19 Jun</td><td class="center"><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td class="center">Jamie</td><td class="center"><span class="act-zero">0</span></td></tr>
+          <tr><td>Wed 24 Jun</td><td class="center"><span class="tick tick-yes">✓</span></td><td class="center">Marcus</td><td class="center"><span class="act-zero">0</span></td></tr>
+          <tr><td>Tue 23 Jun</td><td class="center"><span class="tick tick-yes">✓</span></td><td class="center">Sarah</td><td class="center"><span class="act-badge">2</span></td></tr>
+          <tr><td>Mon 22 Jun</td><td class="center"><span class="tick tick-yes">✓</span></td><td class="center">Marcus</td><td class="center"><span class="act-zero">0</span></td></tr>
+          <tr><td>Sun 21 Jun</td><td class="center"><span class="tick tick-yes">✓</span></td><td class="center">Jamie</td><td class="center"><span class="act-badge">1</span></td></tr>
+          <tr><td>Sat 20 Jun</td><td class="center"><span class="tick tick-yes">✓</span></td><td class="center">Sarah</td><td class="center"><span class="act-zero">0</span></td></tr>
+          <tr><td>Fri 19 Jun</td><td class="center"><span class="tick tick-yes">✓</span></td><td class="center">Jamie</td><td class="center"><span class="act-zero">0</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -216,10 +206,7 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
         <table class="evo-head-table" style="flex-shrink:0;">
           <colgroup><col><col><col><col></colgroup>
           <thead><tr>
-            <th>Job</th>
-            <th class="center">Responsibility</th>
-            <th class="center">Raised</th>
-            <th class="center">Urgency</th>
+            <th>Job</th><th class="center">Responsibility</th><th class="center">Raised</th><th class="center">Urgency</th>
           </tr></thead>
         </table>
         <div class="evo-scroll-body">
@@ -245,76 +232,75 @@ function updateClock(){
 }
 updateClock(); setInterval(updateClock,10000);
 
-// ── TRAFFIC TICKER ──
+// ── TRAFFIC ──
 let base=1847,total=8214;
-setInterval(()=>{
-  const d=Math.round((Math.random()-0.35)*20);
-  base+=d; if(base<0)base=0;
-  total+=Math.max(0,d);
-  document.getElementById('traffic-now').textContent=base.toLocaleString();
-  document.getElementById('t-total').textContent=total.toLocaleString();
-},7000);
+setInterval(()=>{const d=Math.round((Math.random()-0.35)*20);base+=d;if(base<0)base=0;total+=Math.max(0,d);document.getElementById('traffic-now').textContent=base.toLocaleString();document.getElementById('t-total').textContent=total.toLocaleString();},7000);
 
 // ── CHARTS ──
 const nowH=new Date().getHours();
 const allHours=['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm'];
 const allData=[80,140,310,580,920,1340,1820,2640,2380,1950,1640,1420,1180,850,520,210];
 const cutoff=Math.max(Math.min(nowH-6+1,16),2);
+const baseOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{ticks:{color:'rgba(255,255,255,0.5)',font:{size:9}},grid:{display:false},border:{display:false}},y:{ticks:{color:'rgba(255,255,255,0.5)',font:{size:9},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v},grid:{color:'rgba(255,255,255,0.08)'},border:{display:false}}}};
+new Chart(document.getElementById('chartDay'),{type:'line',data:{labels:allHours.slice(0,cutoff),datasets:[{data:allData.slice(0,cutoff),borderColor:'rgba(255,255,255,1)',backgroundColor:'rgba(255,255,255,0.18)',fill:true,borderWidth:3,tension:0.4,pointRadius:0}]},options:baseOpts});
+new Chart(document.getElementById('chartWeek'),{type:'bar',data:{labels:['Fri','Sat','Sun','Mon','Tue','Wed','Thu'],datasets:[{data:[8200,14300,12800,5400,5900,6300,7100],backgroundColor:['rgba(255,255,255,0.25)','rgba(255,255,255,0.75)','rgba(255,255,255,0.6)','rgba(255,255,255,0.18)','rgba(255,255,255,0.18)','rgba(255,255,255,0.22)','rgba(255,255,255,0.45)'],borderColor:['rgba(255,255,255,0.5)','rgba(255,255,255,1)','rgba(255,255,255,0.9)','rgba(255,255,255,0.35)','rgba(255,255,255,0.35)','rgba(255,255,255,0.42)','rgba(255,255,255,0.8)'],borderWidth:1.5,borderRadius:4}]},options:baseOpts});
 
-const baseOpts={
-  responsive:true,maintainAspectRatio:false,
-  plugins:{legend:{display:false},tooltip:{enabled:false}},
-  scales:{
-    x:{ticks:{color:'rgba(255,255,255,0.5)',font:{size:9}},grid:{display:false},border:{display:false}},
-    y:{ticks:{color:'rgba(255,255,255,0.5)',font:{size:9},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v},grid:{color:'rgba(255,255,255,0.08)'},border:{display:false}}
+// ── INLINE SVG WEATHER ICONS — no font dependency ──
+function wxSVG(type){
+  const ns='http://www.w3.org/2000/svg';
+  const s=document.createElementNS(ns,'svg');
+  s.setAttribute('viewBox','0 0 24 24');s.setAttribute('width','24');s.setAttribute('height','24');
+  s.setAttribute('fill','none');s.setAttribute('stroke','rgba(255,255,255,0.9)');
+  s.setAttribute('stroke-width','1.8');s.setAttribute('stroke-linecap','round');s.setAttribute('stroke-linejoin','round');
+  const mk=(tag,a)=>{const e=document.createElementNS(ns,tag);Object.entries(a).forEach(([k,v])=>e.setAttribute(k,v));s.appendChild(e);return e;};
+  const Y='rgba(245,200,74,0.95)';
+  if(type==='sun'){
+    mk('circle',{cx:12,cy:12,r:5,fill:Y,stroke:Y});
+    [[12,2,12,4],[12,20,12,22],[2,12,4,12],[20,12,22,12],[4.9,4.9,6.3,6.3],[17.7,17.7,19.1,19.1],[4.9,19.1,6.3,17.7],[17.7,6.3,19.1,4.9]].forEach(([x1,y1,x2,y2])=>mk('line',{x1,y1,x2,y2,stroke:Y}));
+  } else if(type==='cloud-sun'){
+    mk('circle',{cx:17,cy:7,r:3,fill:Y,stroke:Y,'stroke-width':'1.2'});
+    [[17,2,17,3.5],[17,10.5,17,12],[12,7,13.5,7],[20.5,7,22,7],[13.6,3.6,14.7,4.7],[19.3,9.3,20.4,10.4],[13.6,10.4,14.7,9.3],[19.3,4.7,20.4,3.6]].forEach(([x1,y1,x2,y2])=>mk('line',{x1,y1,x2,y2,stroke:Y,'stroke-width':'1.2'}));
+    mk('path',{d:'M7 18a5 5 0 0 1-.5-9.9A6 6 0 0 1 18 10a3 3 0 0 1 0 6H7z',fill:'rgba(195,215,238,0.85)',stroke:'rgba(160,195,230,0.8)','stroke-width':'1.2'});
+  } else if(type==='cloud'){
+    mk('path',{d:'M3 18a5 5 0 0 1 0-10 6 6 0 0 1 11.8-1.3A4 4 0 0 1 20 14a4 4 0 0 1-4 4H3z',fill:'rgba(195,215,238,0.85)',stroke:'rgba(160,195,230,0.8)'});
+  } else if(type==='rain'){
+    mk('path',{d:'M3 15a5 5 0 0 1 0-10 6 6 0 0 1 11.8-1.3A4 4 0 0 1 20 11a4 4 0 0 1-4 4H3z',fill:'rgba(145,185,225,0.9)',stroke:'rgba(120,165,210,0.8)'});
+    [[8,19,7,21],[12,19,11,21],[16,19,15,21]].forEach(([x1,y1,x2,y2])=>mk('line',{x1,y1,x2,y2,stroke:'rgba(100,170,255,0.9)','stroke-width':'2'}));
+  } else if(type==='storm'){
+    mk('path',{d:'M3 13a5 5 0 0 1 0-10 6 6 0 0 1 11.8-1.3A4 4 0 0 1 20 9a4 4 0 0 1-4 4H3z',fill:'rgba(120,155,200,0.9)',stroke:'rgba(100,140,190,0.8)'});
+    mk('polyline',{points:'13,17 10,22 14,22 11,27',stroke:'#f5c84a',fill:'none','stroke-width':'2'});
+  } else if(type==='snow'){
+    mk('path',{d:'M3 15a5 5 0 0 1 0-10 6 6 0 0 1 11.8-1.3A4 4 0 0 1 20 11a4 4 0 0 1-4 4H3z',fill:'rgba(195,215,238,0.85)',stroke:'rgba(160,195,230,0.8)'});
+    [[8,19,8,23],[12,19,12,23],[16,19,16,23],[6,21,10,21],[10,21,14,21],[14,21,18,21]].forEach(([x1,y1,x2,y2])=>mk('line',{x1,y1,x2,y2,stroke:'rgba(180,220,255,0.9)'}));
+  } else if(type==='fog'){
+    [[3,10,21,10],[3,14,21,14],[3,18,21,18]].forEach(([x1,y1,x2,y2])=>mk('line',{x1,y1,x2,y2,stroke:'rgba(200,220,240,0.7)','stroke-width':'2'}));
+  } else if(type==='drizzle'){
+    mk('path',{d:'M3 15a5 5 0 0 1 0-10 6 6 0 0 1 11.8-1.3A4 4 0 0 1 20 11a4 4 0 0 1-4 4H3z',fill:'rgba(160,195,230,0.85)',stroke:'rgba(140,180,220,0.8)'});
+    [[9,19,8,21],[13,19,12,21]].forEach(([x1,y1,x2,y2])=>mk('line',{x1,y1,x2,y2,stroke:'rgba(100,170,255,0.8)','stroke-width':'1.8'}));
   }
-};
+  return s;
+}
 
-new Chart(document.getElementById('chartDay'),{
-  type:'line',
-  data:{
-    labels:allHours.slice(0,cutoff),
-    datasets:[{
-      data:allData.slice(0,cutoff),
-      borderColor:'rgba(255,255,255,1)',
-      backgroundColor:'rgba(255,255,255,0.18)',
-      fill:true,borderWidth:3,tension:0.4,pointRadius:0
-    }]
-  },
-  options:baseOpts
-});
+function codeToType(c){
+  if(c===0) return'sun';
+  if(c<=2)  return'cloud-sun';
+  if(c<=3)  return'cloud';
+  if(c<=48) return'fog';
+  if(c<=57) return'drizzle';
+  if(c<=67) return'rain';
+  if(c<=77) return'snow';
+  if(c<=82) return'rain';
+  return'storm';
+}
 
-new Chart(document.getElementById('chartWeek'),{
-  type:'bar',
-  data:{
-    labels:['Fri','Sat','Sun','Mon','Tue','Wed','Thu'],
-    datasets:[{
-      data:[8200,14300,12800,5400,5900,6300,7100],
-      backgroundColor:[
-        'rgba(255,255,255,0.25)',
-        'rgba(255,255,255,0.75)',
-        'rgba(255,255,255,0.6)',
-        'rgba(255,255,255,0.18)',
-        'rgba(255,255,255,0.18)',
-        'rgba(255,255,255,0.22)',
-        'rgba(255,255,255,0.45)'
-      ],
-      borderColor:[
-        'rgba(255,255,255,0.5)',
-        'rgba(255,255,255,1)',
-        'rgba(255,255,255,0.9)',
-        'rgba(255,255,255,0.35)',
-        'rgba(255,255,255,0.35)',
-        'rgba(255,255,255,0.42)',
-        'rgba(255,255,255,0.8)'
-      ],
-      borderWidth:1.5,borderRadius:4
-    }]
-  },
-  options:baseOpts
-});
+// Set icon in a container
+function setIcon(el, code){
+  while(el.firstChild) el.removeChild(el.firstChild);
+  const type = (code!==null&&code!==undefined) ? codeToType(code) : 'cloud-sun';
+  el.appendChild(wxSVG(type));
+}
 
-// ── WEATHER ANIMATION ──
+// ── WEATHER ANIMATION (main icon) ──
 function buildAnim(code){
   const el=document.getElementById('weather-anim');el.innerHTML='';
   const ns='http://www.w3.org/2000/svg';
@@ -334,9 +320,7 @@ function buildAnim(code){
     const cg=document.createElementNS(ns,'g');
     const cf=isRain||isStorm?'rgba(145,185,225,0.95)':'rgba(195,215,238,0.9)';
     const ox=isMix?9:0,oy=isMix?7:0;
-    mk('circle',{cx:22+ox,cy:30+oy,r:11,fill:cf},cg);
-    mk('circle',{cx:37+ox,cy:23+oy,r:14,fill:cf},cg);
-    mk('circle',{cx:52+ox,cy:30+oy,r:10,fill:cf},cg);
+    mk('circle',{cx:22+ox,cy:30+oy,r:11,fill:cf},cg);mk('circle',{cx:37+ox,cy:23+oy,r:14,fill:cf},cg);mk('circle',{cx:52+ox,cy:30+oy,r:10,fill:cf},cg);
     mk('rect',{x:11+ox,y:29+oy,width:52,height:12,rx:6,fill:cf},cg);
     if(!isMix){cg.style.animation='sway 5s ease-in-out infinite';cg.style.transformOrigin='40px 27px';}
     svg.appendChild(cg);
@@ -347,13 +331,7 @@ function buildAnim(code){
       d.style.animation=`fall 1.3s ease-in ${(i*0.19).toFixed(2)}s infinite`;
     });
   }
-  if(isSnow){
-    [[22,46],[35,53],[49,46],[28,60],[46,60]].forEach(([x,y],i)=>{
-      const t=document.createElementNS(ns,'text');t.setAttribute('x',x);t.setAttribute('y',y);t.setAttribute('font-size','10');
-      t.setAttribute('fill','rgba(180,220,255,0.9)');t.setAttribute('text-anchor','middle');
-      t.textContent='❄';t.style.animation=`fall 2.2s ease-in ${(i*0.32).toFixed(2)}s infinite`;svg.appendChild(t);
-    });
-  }
+  if(isSnow){[[22,46],[35,53],[49,46],[28,60],[46,60]].forEach(([x,y],i)=>{const t=document.createElementNS(ns,'text');t.setAttribute('x',x);t.setAttribute('y',y);t.setAttribute('font-size','10');t.setAttribute('fill','rgba(180,220,255,0.9)');t.setAttribute('text-anchor','middle');t.textContent='❄';t.style.animation=`fall 2.2s ease-in ${(i*0.32).toFixed(2)}s infinite`;svg.appendChild(t);});}
   if(isStorm){const p=mk('polyline',{points:'42,44 37,54 42,54 37,66',fill:'none',stroke:'#f5c84a','stroke-width':'3','stroke-linecap':'round','stroke-linejoin':'round'});p.style.animation='bolt 2.5s ease infinite';}
   if(isFog){[36,46,56].forEach((y,i)=>{const r=mk('rect',{x:8,y,width:64,height:3.5,rx:2,fill:'rgba(200,220,240,0.55)'});r.style.animation=`sway ${2.5+i*0.5}s ease-in-out ${i*0.3}s infinite`;r.style.transformOrigin='40px '+y+'px';});}
   el.appendChild(svg);
@@ -361,12 +339,13 @@ function buildAnim(code){
 
 // ── WEATHER API ──
 const WD={0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Foggy',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow grains',80:'Rain showers',81:'Heavy showers',82:'Violent showers',95:'Thunderstorm',96:'Thunderstorm & hail',99:'Thunderstorm & hail'};
-const WI=c=>{if(c===0)return'ti-sun';if(c<=2)return'ti-cloud-sun';if(c===3)return'ti-cloud';if(c<=48)return'ti-cloud-fog';if(c<=57)return'ti-cloud-drizzle';if(c<=67)return'ti-cloud-rain';if(c<=77)return'ti-snowflake';if(c<=82)return'ti-cloud-storm';return'ti-bolt';};
 const DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+// Pre-render fallback icons immediately so cards never blank
+for(let i=0;i<5;i++) setIcon(document.getElementById('fci'+i), 2);
 
 async function loadWeather(){
   try{
-    // Request 8 days so indices 1-5 always exist
     const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=-33.797&longitude=151.183&current=temperature_2m,weathercode,relativehumidity_2m,apparent_temperature,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Australia%2FSydney&forecast_days=8');
     const d=await r.json();
     const cur=d.current,daily=d.daily;
@@ -376,24 +355,37 @@ async function loadWeather(){
     document.getElementById('w-sub').textContent='Feels like '+Math.round(cur.apparent_temperature)+'°  ·  Humidity '+cur.relativehumidity_2m+'%  ·  Wind '+Math.round(cur.windspeed_10m)+' km/h';
     document.getElementById('w-hilo').textContent='H: '+Math.round(daily.temperature_2m_max[0])+'°  ·  L: '+Math.round(daily.temperature_2m_min[0])+'°';
     buildAnim(code);
+
     const fcCards=document.querySelectorAll('.fc');
     for(let i=0;i<5;i++){
       const idx=i+1;
       const t=daily.time[idx];
-      // weathercode can be 0 (clear) which is falsy — must check undefined/null explicitly
-      const wc=daily.weathercode[idx];
+      const wc=daily.weathercode[idx]; // may be null for far-out days
       const max=daily.temperature_2m_max[idx];
       const rain=daily.precipitation_probability_max[idx];
-      const safeWc=(wc!==undefined&&wc!==null)?wc:2; const safeMax=(max!==undefined&&max!==null)?Math.round(max):"--"; if(!t) continue;
-      const day=DN[new Date(t+'T00:00:00').getDay()];
-      const rainStr=rain!==null&&rain!==undefined ? rain+'%' : '--';
-      fcCards[i].innerHTML=`<div class="fc-day">${day}</div><i class="ti ${WI(safeWc)} fc-ico"></i><div class="fc-tmp">${safeMax}°</div><div class="fc-rain">${rainStr}</div>`;
+
+      // Always render — use fallbacks if data missing
+      const day = t ? DN[new Date(t+'T00:00:00').getDay()] : DN[(new Date().getDay()+i+1)%7];
+      const tempStr = (max!==null&&max!==undefined) ? Math.round(max)+'°' : '--°';
+      const rainStr = (rain!==null&&rain!==undefined) ? rain+'%' : '--';
+      const safeCode = (wc!==null&&wc!==undefined) ? wc : 2;
+
+      fcCards[i].querySelector('.fc-day').textContent = day;
+      fcCards[i].querySelector('.fc-tmp').textContent = tempStr;
+      fcCards[i].querySelector('.fc-rain').textContent = rainStr;
+      setIcon(fcCards[i].querySelector('.fc-ico'), safeCode);
     }
-  }catch(e){buildAnim(61);}
+  }catch(e){ buildAnim(61); }
 }
 loadWeather(); setInterval(loadWeather,600000);
 
 // ── EVO GO ──
+const RESP = {
+  'Maintenance': 'resp-maint',
+  'Operations':  'resp-ops',
+  'Car Park':    'resp-park',
+  'Cleaners':    'resp-clean',
+};
 const EVO=[
   {t:'Escalator E3 — fault alarm active',           r:'Maintenance',raised:'Today',      d:'eu-urgent',urg:'Urgent',uc:'urg-urgent'},
   {t:'Loading dock roller door — not closing',       r:'Operations', raised:'Today',      d:'eu-urgent',urg:'Urgent',uc:'urg-urgent'},
@@ -411,7 +403,7 @@ const EVO=[
 document.getElementById('evo-body').innerHTML=EVO.map(j=>`
   <tr>
     <td><span class="evo-dot ${j.d}"></span><span class="evo-job-title">${j.t}</span></td>
-    <td class="center"><span class="evo-resp-plain">${j.r}</span></td>
+    <td class="center"><span class="resp-pill ${RESP[j.r]||''}">${j.r}</span></td>
     <td class="center evo-date-col">${j.raised}</td>
     <td class="center"><span class="urg ${j.uc}">${j.urg}</span></td>
   </tr>`).join('');
