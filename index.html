@@ -234,7 +234,7 @@ const nowH=new Date().getHours();
 const allHours=['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm'];
 const allData=[80,140,310,580,920,1340,1820,2640,2380,1950,1640,1420,1180,850,520,210];
 const cutoff=Math.max(Math.min(nowH-6+1,16),2);
-const baseOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{ticks:{color:'rgba(255,255,255,0.5)',font:{size:9}},grid:{display:false},border:{display:false}},y:{ticks:{color:'rgba(255,255,255,0.5)',font:{size:9},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v},grid:{color:'rgba(255,255,255,0.08)'},border:{display:false}}}};
+const baseOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{ticks:{color:'rgba(255,255,255,0.5)',font:{size:9}},grid:{display:false},border:{display:false}},y:{ticks:{color:'rgba(255,255,255,0.5)',font:{size:9},maxTicksLimit:4,callback:v=>{if(v===0)return'0';if(v>=1000)return(v/1000)+'k';return v;}},grid:{color:'rgba(255,255,255,0.08)'},border:{display:false}}}};
 new Chart(document.getElementById('chartDay'),{type:'line',data:{labels:allHours.slice(0,cutoff),datasets:[{data:allData.slice(0,cutoff),borderColor:'rgba(255,255,255,1)',backgroundColor:'rgba(255,255,255,0.18)',fill:true,borderWidth:3,tension:0.4,pointRadius:0}]},options:baseOpts});
 new Chart(document.getElementById('chartWeek'),{type:'bar',data:{labels:['Fri','Sat','Sun','Mon','Tue','Wed','Thu'],datasets:[{data:[8200,14300,12800,5400,5900,6300,7100],backgroundColor:['rgba(255,255,255,0.25)','rgba(255,255,255,0.75)','rgba(255,255,255,0.6)','rgba(255,255,255,0.18)','rgba(255,255,255,0.18)','rgba(255,255,255,0.22)','rgba(255,255,255,0.45)'],borderColor:['rgba(255,255,255,0.5)','rgba(255,255,255,1)','rgba(255,255,255,0.9)','rgba(255,255,255,0.35)','rgba(255,255,255,0.35)','rgba(255,255,255,0.42)','rgba(255,255,255,0.8)'],borderWidth:1.5,borderRadius:4}]},options:baseOpts});
 
@@ -292,31 +292,32 @@ async function loadWeather(){
     document.getElementById('w-hilo').textContent='H: '+Math.round(daily.temperature_2m_max[0])+'°  ·  L: '+Math.round(daily.temperature_2m_min[0])+'°';
     buildAnim(code);
 
-    // Build 5-card forecast — each card in its own try/catch so one bad day can't kill the rest
+    // Forecast — update text only, leave icon elements in place
+    // Icons are pre-rendered in HTML and only replaced if we have a valid code
     const fcCards=document.querySelectorAll('.fc');
-    let lastGoodCode=code;
-    let lastGoodMax=daily.temperature_2m_max[0]||15;
+    let lastCode=code, lastMax=daily.temperature_2m_max[0]||15;
     for(let i=0;i<5;i++){
-      try{
-        const idx=i+1;
-        const t    = daily.time[idx];
-        const wc   = daily.weathercode[idx];
-        const max  = daily.temperature_2m_max[idx];
-        const rain = daily.precipitation_probability_max[idx];
+      const idx=i+1;
+      const t    = daily.time    ? daily.time[idx]                       : null;
+      const wc   = daily.weathercode ? daily.weathercode[idx]            : null;
+      const max  = daily.temperature_2m_max ? daily.temperature_2m_max[idx] : null;
+      const rain = daily.precipitation_probability_max ? daily.precipitation_probability_max[idx] : null;
 
-        const useCode = (wc!==null&&wc!==undefined)  ? wc              : lastGoodCode;
-        const useMax  = (max!==null&&max!==undefined) ? Math.round(max) : Math.round(lastGoodMax);
-        const rainStr = (rain!==null&&rain!==undefined) ? rain+'%'      : '--';
-        const day     = t ? DN[new Date(t+'T00:00:00').getDay()] : DN[(new Date().getDay()+idx)%7];
+      const useCode = (wc!==null&&wc!==undefined)   ? wc              : lastCode;
+      const useMax  = (max!==null&&max!==undefined)  ? Math.round(max) : Math.round(lastMax);
+      const rainStr = (rain!==null&&rain!==undefined) ? rain+'%'       : '--';
+      const day     = t ? DN[new Date(t+'T00:00:00').getDay()] : DN[(new Date().getDay()+idx)%7];
 
-        if(wc!==null&&wc!==undefined)  lastGoodCode=wc;
-        if(max!==null&&max!==undefined) lastGoodMax=max;
+      if(wc!==null&&wc!==undefined)   lastCode=wc;
+      if(max!==null&&max!==undefined)  lastMax=max;
 
-        // Rebuild the entire card html — no partial updates
-        fcCards[i].innerHTML='<div class="fc-day">'+day+'</div><i class="ti '+WI(useCode)+' fc-ico"></i><div class="fc-tmp">'+useMax+'°</div><div class="fc-rain">'+rainStr+'</div>';
-      }catch(err){
-        // card stays as whatever it was
-      }
+      // Update each element individually — never innerHTML the whole card
+      fcCards[i].querySelector('.fc-day').textContent  = day;
+      fcCards[i].querySelector('.fc-tmp').textContent  = useMax+'°';
+      fcCards[i].querySelector('.fc-rain').textContent = rainStr;
+      // Icon: swap class on the existing <i> element
+      const ico = fcCards[i].querySelector('.fc-ico');
+      ico.className = 'ti '+WI(useCode)+' fc-ico';
     }
   }catch(e){buildAnim(61);}
 }
