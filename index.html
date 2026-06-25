@@ -12,88 +12,122 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 
 .dash {
   width: 100vw; height: 100vh;
-  padding: 16px;
+  padding: 12px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  grid-template-rows: 1fr;
+  gap: 10px;
 }
-.left, .right { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+
+/* each column is a flex column that fills full height */
+.left, .right {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+  height: 100%;
+}
 
 /* ── CARDS ── */
-.card { background: rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; border: 0.5px solid rgba(255,255,255,0.12); }
-.card-light { background: #f7f0f1; border-radius: 10px; padding: 12px 16px; border: 0.5px solid rgba(83,22,32,0.15); flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
-.label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-bottom: 6px; }
-.label-dark { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(83,22,32,0.4); margin-bottom: 6px; }
+.card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 10px 14px;
+  border: 0.5px solid rgba(255,255,255,0.12);
+}
+.card-light {
+  background: #f7f0f1;
+  border-radius: 10px;
+  padding: 10px 14px;
+  border: 0.5px solid rgba(83,22,32,0.15);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+/* traffic card grows to fill remaining left column space */
+.traffic-card {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+/* iAuditor fixed, evo grows */
+.iaud-card { flex: 0 0 auto; }
+.evo-card  { flex: 1; min-height: 0; }
+
+.label      { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-bottom: 5px; }
+.label-dark { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(83,22,32,0.4);     margin-bottom: 5px; }
 
 /* ── HEADER ── */
 .header-card {
   background: #f7f0f1; border-radius: 10px;
-  padding: 8px 16px;
+  padding: 8px 14px;
   display: flex; align-items: center; justify-content: space-between;
+  flex: 0 0 auto;
 }
-.logo { height: 30px; filter: brightness(0) saturate(100%) invert(9%) sepia(57%) saturate(2600%) hue-rotate(333deg) brightness(80%) contrast(95%); opacity: 0.9; }
-.time-big { font-size: 30px; font-weight: 500; color: #531620; line-height: 1; text-align: right; }
-.date-sub { font-size: 10px; color: rgba(83,22,32,0.5); margin-top: 2px; text-align: right; }
+.logo { height: 28px; filter: brightness(0) saturate(100%) invert(9%) sepia(57%) saturate(2600%) hue-rotate(333deg) brightness(80%) contrast(95%); opacity:0.9; }
+.time-big { font-size: 28px; font-weight: 500; color: #531620; line-height: 1; text-align: right; }
+.date-sub { font-size: 10px; color: rgba(83,22,32,0.5); margin-top: 1px; text-align: right; }
 
 /* ── WEATHER ── */
-.weather-wrap { display: flex; gap: 12px; align-items: center; }
-.weather-anim { width: 72px; height: 72px; position: relative; flex-shrink: 0; }
-.weather-right { flex: 1; }
-.weather-temp { font-size: 38px; font-weight: 500; color: #fff; line-height: 1; }
-.weather-desc { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 3px; }
-.forecast-row { display: flex; gap: 5px; margin-top: 10px; }
-.fc { flex: 1; background: rgba(255,255,255,0.07); border-radius: 7px; padding: 6px 3px; text-align: center; border: 0.5px solid rgba(255,255,255,0.1); }
-.fc-day { font-size: 9px; color: rgba(255,255,255,0.4); margin-bottom: 3px; }
-.fc-icon { font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 3px; }
+.weather-wrap { display: flex; gap: 10px; align-items: center; }
+.weather-anim { width: 64px; height: 64px; flex-shrink: 0; }
+.weather-temp { font-size: 34px; font-weight: 500; color: #fff; line-height: 1; }
+.weather-desc { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+.forecast-row { display: flex; gap: 5px; margin-top: 8px; }
+.fc { flex:1; background: rgba(255,255,255,0.07); border-radius: 7px; padding: 5px 3px; text-align: center; border: 0.5px solid rgba(255,255,255,0.1); }
+.fc-day  { font-size: 9px;  color: rgba(255,255,255,0.4);  margin-bottom: 2px; }
+.fc-icon { font-size: 14px; color: rgba(255,255,255,0.75); margin-bottom: 2px; display: block; }
 .fc-temp { font-size: 11px; font-weight: 500; color: #fff; }
-.fc-rain { font-size: 9px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.fc-rain { font-size: 9px;  color: rgba(255,255,255,0.4);  margin-top: 1px; }
 
-/* rain animation */
-@keyframes fall { 0%{transform:translateY(-10px);opacity:0} 40%{opacity:1} 100%{transform:translateY(40px);opacity:0} }
-@keyframes sway { 0%,100%{transform:rotate(-8deg)} 50%{transform:rotate(8deg)} }
-@keyframes pulse { 0%,100%{opacity:0.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.08)} }
-@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-@keyframes bolt { 0%,90%,100%{opacity:0} 92%,98%{opacity:1} }
+/* weather animations */
+@keyframes fall   { 0%{transform:translateY(-8px);opacity:0} 40%{opacity:1} 100%{transform:translateY(38px);opacity:0} }
+@keyframes sway   { 0%,100%{transform:rotate(-6deg)} 50%{transform:rotate(6deg)} }
+@keyframes pulse  { 0%,100%{opacity:0.75;transform:scale(1)} 50%{opacity:1;transform:scale(1.08)} }
+@keyframes spin   { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes bolt   { 0%,88%,100%{opacity:0} 90%,98%{opacity:1} }
 
 /* ── TRAFFIC ── */
-.traffic-big { font-size: 40px; font-weight: 600; color: #fff; line-height: 1; }
-.traffic-sub { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px; }
-.badges { display: flex; gap: 6px; margin-top: 7px; flex-wrap: wrap; }
-.badge { font-size: 10px; padding: 3px 8px; border-radius: 20px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.75); }
-.badge-up { background: rgba(90,200,120,0.18); color: #7be0a0; }
-.badge-warn { background: rgba(240,180,60,0.18); color: #f5c84a; }
+.traffic-big { font-size: 38px; font-weight: 600; color: #fff; line-height: 1; }
+.traffic-sub { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 1px; }
+.badges { display: flex; gap: 5px; margin-top: 6px; flex-wrap: wrap; }
+.badge      { font-size: 10px; padding: 2px 7px; border-radius: 20px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.75); }
+.badge-up   { background: rgba(90,200,120,0.18); color: #7be0a0; }
+.badge-warn { background: rgba(240,180,60,0.18);  color: #f5c84a; }
+.chart-wrap { flex: 1; min-height: 0; position: relative; margin-top: 8px; }
 
-/* ── iAUDITOR TABLE ── */
+/* ── AUDIT TABLE ── */
 .audit-table { width: 100%; border-collapse: collapse; font-size: 11px; }
-.audit-table th { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(83,22,32,0.4); padding: 0 8px 6px 0; text-align: left; font-weight: 500; border-bottom: 0.5px solid rgba(83,22,32,0.12); }
-.audit-table td { padding: 7px 8px 7px 0; border-bottom: 0.5px solid rgba(83,22,32,0.08); color: #2a0a0e; vertical-align: middle; }
+.audit-table th { font-size: 9px; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(83,22,32,0.4); padding: 0 8px 5px 0; text-align: left; font-weight: 500; border-bottom: 0.5px solid rgba(83,22,32,0.12); }
+.audit-table td { padding: 5px 8px 5px 0; border-bottom: 0.5px solid rgba(83,22,32,0.07); color: #2a0a0e; vertical-align: middle; }
 .audit-table tr:last-child td { border-bottom: none; }
-.tick { width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; }
+.tick     { width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; }
 .tick-yes { background: #d4edda; color: #27773a; }
-.tick-no { background: rgba(83,22,32,0.08); color: rgba(83,22,32,0.3); font-size: 13px; }
-.action-badge { display: inline-block; background: #fde8e8; color: #a32d2d; border-radius: 12px; padding: 1px 7px; font-size: 10px; font-weight: 500; }
-.action-none { color: rgba(83,22,32,0.3); font-size: 11px; }
-.today-row td { color: rgba(83,22,32,0.4); font-style: italic; }
+.tick-no  { background: rgba(83,22,32,0.07); color: rgba(83,22,32,0.25); font-size: 12px; line-height: 1; }
+.act-badge { display: inline-block; background: #fde8e8; color: #a32d2d; border-radius: 12px; padding: 1px 6px; font-size: 10px; font-weight: 500; }
+.act-zero  { color: rgba(83,22,32,0.25); font-size: 11px; }
+.today-row td { color: rgba(83,22,32,0.38); font-style: italic; }
 
-/* ── EVO GO SCROLL ── */
-.evo-scroll-wrap { flex: 1; min-height: 0; overflow: hidden; position: relative; }
-.evo-scroll-inner { display: flex; flex-direction: column; gap: 0; }
-.evo-item { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 0.5px solid rgba(83,22,32,0.08); }
+/* ── EVO GO ── */
+.evo-scroll-wrap  { flex: 1; min-height: 0; overflow: hidden; position: relative; }
+.evo-scroll-inner { display: flex; flex-direction: column; }
+.evo-item { display: flex; align-items: center; gap: 7px; padding: 6px 0; border-bottom: 0.5px solid rgba(83,22,32,0.07); }
 .evo-item:last-child { border-bottom: none; }
-.evo-urgency { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-.eu-urgent { background: #e24b4a; box-shadow: 0 0 5px rgba(226,75,74,0.6); }
-.eu-high { background: #e24b4a; }
-.eu-med { background: #ef9f27; }
-.eu-low { background: #639922; }
-.evo-body { flex: 1; min-width: 0; }
+.evo-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.eu-urgent { background: #e24b4a; box-shadow: 0 0 5px rgba(226,75,74,0.7); }
+.eu-high   { background: #e24b4a; }
+.eu-med    { background: #ef9f27; }
+.eu-low    { background: #639922; }
+.evo-body  { flex: 1; min-width: 0; }
 .evo-title { font-size: 11px; font-weight: 500; color: #2a0a0e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.evo-meta { font-size: 9px; color: #999; margin-top: 1px; }
-.evo-cat { font-size: 9px; padding: 2px 7px; border-radius: 10px; flex-shrink: 0; font-weight: 500; }
+.evo-meta  { font-size: 9px; color: #999; margin-top: 1px; }
+.evo-cat   { font-size: 9px; padding: 2px 6px; border-radius: 10px; flex-shrink: 0; font-weight: 500; }
 .cat-maint { background: #e8eef8; color: #2d5096; }
-.cat-park { background: #e8f4e8; color: #2d6b2d; }
+.cat-park  { background: #e8f4e8; color: #2d6b2d; }
 .cat-clean { background: #f0e8f8; color: #6b2d96; }
-.cat-ops { background: #faeeda; color: #854f0b; }
-.evo-badge { font-size: 9px; padding: 2px 6px; border-radius: 10px; flex-shrink: 0; margin-left: 4px; }
+.cat-ops   { background: #faeeda; color: #854f0b; }
+.evo-badge { font-size: 9px; padding: 2px 6px; border-radius: 10px; flex-shrink: 0; margin-left: 2px; }
 .ebh { background: #fcebeb; color: #a32d2d; }
 .ebm { background: #faeeda; color: #854f0b; }
 .ebl { background: #eaf3de; color: #3b6d11; }
@@ -119,7 +153,7 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
       <div class="label">Live weather — Chatswood NSW</div>
       <div class="weather-wrap">
         <div class="weather-anim" id="weather-anim"></div>
-        <div class="weather-right">
+        <div>
           <div class="weather-temp" id="w-temp">--°C</div>
           <div class="weather-desc" id="w-desc">Loading...</div>
         </div>
@@ -133,8 +167,8 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
       </div>
     </div>
 
-    <!-- Foot Traffic -->
-    <div class="card" style="flex:1;min-height:0;">
+    <!-- Foot Traffic — grows to fill remaining space -->
+    <div class="card traffic-card">
       <div class="label">Current foot traffic</div>
       <div class="traffic-big" id="traffic-now">1,847</div>
       <div class="traffic-sub">visitors on site right now</div>
@@ -143,7 +177,7 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
         <span class="badge">Peak today: 12:30pm · 2,640</span>
         <span class="badge badge-warn">L1: 62% capacity</span>
       </div>
-      <div style="position:relative;width:100%;height:85px;margin-top:10px;">
+      <div class="chart-wrap">
         <canvas id="trafficChart"></canvas>
       </div>
     </div>
@@ -153,8 +187,8 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
   <!-- ═══════ RIGHT ═══════ -->
   <div class="right">
 
-    <!-- iAuditor -->
-    <div class="card-light" style="flex:0 0 auto;">
+    <!-- iAuditor — fixed height, no grow -->
+    <div class="card-light iaud-card">
       <div class="label-dark">iAuditor — daily inspections</div>
       <table class="audit-table">
         <thead>
@@ -170,55 +204,23 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
             <td>Today</td>
             <td><span class="tick tick-no">–</span></td>
             <td style="color:rgba(83,22,32,0.3)">—</td>
-            <td><span class="action-none">—</span></td>
+            <td><span class="act-zero">—</span></td>
           </tr>
-          <tr>
-            <td>Wed 24 Jun</td>
-            <td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td>
-            <td>Marcus T.</td>
-            <td><span class="action-none">0</span></td>
-          </tr>
-          <tr>
-            <td>Tue 23 Jun</td>
-            <td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td>
-            <td>Sarah L.</td>
-            <td><span class="action-badge">2</span></td>
-          </tr>
-          <tr>
-            <td>Mon 22 Jun</td>
-            <td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td>
-            <td>Marcus T.</td>
-            <td><span class="action-none">0</span></td>
-          </tr>
-          <tr>
-            <td>Sun 21 Jun</td>
-            <td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td>
-            <td>Jamie R.</td>
-            <td><span class="action-badge">1</span></td>
-          </tr>
-          <tr>
-            <td>Sat 20 Jun</td>
-            <td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td>
-            <td>Sarah L.</td>
-            <td><span class="action-none">0</span></td>
-          </tr>
-          <tr>
-            <td>Fri 19 Jun</td>
-            <td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td>
-            <td>Jamie R.</td>
-            <td><span class="action-none">0</span></td>
-          </tr>
+          <tr><td>Wed 24 Jun</td><td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td>Marcus T.</td><td><span class="act-zero">0</span></td></tr>
+          <tr><td>Tue 23 Jun</td><td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td>Sarah L.</td><td><span class="act-badge">2</span></td></tr>
+          <tr><td>Mon 22 Jun</td><td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td>Marcus T.</td><td><span class="act-zero">0</span></td></tr>
+          <tr><td>Sun 21 Jun</td><td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td>Jamie R.</td><td><span class="act-badge">1</span></td></tr>
+          <tr><td>Sat 20 Jun</td><td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td>Sarah L.</td><td><span class="act-zero">0</span></td></tr>
+          <tr><td>Fri 19 Jun</td><td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td>Jamie R.</td><td><span class="act-zero">0</span></td></tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Evo Go -->
-    <div class="card-light">
+    <!-- Evo Go — grows to fill remaining right column space -->
+    <div class="card-light evo-card">
       <div class="label-dark">Evo Go — outstanding jobs</div>
       <div class="evo-scroll-wrap">
-        <div class="evo-scroll-inner" id="evo-list">
-          <!-- injected by JS -->
-        </div>
+        <div class="evo-scroll-inner" id="evo-list"></div>
       </div>
     </div>
 
@@ -229,33 +231,27 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 // ── CLOCK ──
 function updateClock() {
   const now = new Date();
-  document.getElementById('clock').textContent =
-    String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+  document.getElementById('clock').textContent = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
   const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  document.getElementById('datestr').textContent =
-    days[now.getDay()] + ' ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+  document.getElementById('datestr').textContent = days[now.getDay()] + ' ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
 }
 updateClock(); setInterval(updateClock, 10000);
 
 // ── TRAFFIC TICKER ──
 let base = 1847;
-setInterval(() => {
-  base += Math.round((Math.random() - 0.48) * 18);
-  document.getElementById('traffic-now').textContent = base.toLocaleString();
-}, 7000);
+setInterval(() => { base += Math.round((Math.random()-0.48)*18); document.getElementById('traffic-now').textContent = base.toLocaleString(); }, 7000);
 
-// ── TRAFFIC CHART ──
-new Chart(document.getElementById('trafficChart'), {
+// ── CHART — fills its container ──
+const ctx = document.getElementById('trafficChart');
+new Chart(ctx, {
   type: 'bar',
   data: {
     labels: ['Fri','Sat','Sun','Mon','Tue','Wed','Thu'],
     datasets: [{
       data: [8200,14300,12800,5400,5900,6300,7100],
-      backgroundColor: ['rgba(245,200,74,0.3)','rgba(245,200,74,0.9)','rgba(245,200,74,0.75)',
-        'rgba(255,255,255,0.15)','rgba(255,255,255,0.15)','rgba(255,255,255,0.2)','rgba(245,200,74,0.6)'],
-      borderColor: ['rgba(245,200,74,0.6)','rgba(245,200,74,1)','rgba(245,200,74,0.9)',
-        'rgba(255,255,255,0.3)','rgba(255,255,255,0.3)','rgba(255,255,255,0.4)','rgba(245,200,74,0.9)'],
+      backgroundColor: ['rgba(245,200,74,0.35)','rgba(245,200,74,0.95)','rgba(245,200,74,0.8)','rgba(255,255,255,0.12)','rgba(255,255,255,0.12)','rgba(255,255,255,0.18)','rgba(245,200,74,0.65)'],
+      borderColor:      ['rgba(245,200,74,0.7)', 'rgba(245,200,74,1)',    'rgba(245,200,74,0.95)','rgba(255,255,255,0.28)','rgba(255,255,255,0.28)','rgba(255,255,255,0.38)','rgba(245,200,74,0.95)'],
       borderWidth: 1, borderRadius: 4
     }]
   },
@@ -263,9 +259,8 @@ new Chart(document.getElementById('trafficChart'), {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false } },
     scales: {
-      x: { ticks: { color: 'rgba(255,255,255,0.45)', font: { size: 9 } }, grid: { display: false }, border: { display: false } },
-      y: { ticks: { color: 'rgba(255,255,255,0.45)', font: { size: 9 }, callback: v => (v/1000).toFixed(0)+'k' },
-           grid: { color: 'rgba(255,255,255,0.06)' }, border: { display: false } }
+      x: { ticks: { color: 'rgba(255,255,255,0.45)', font:{size:9} }, grid: { display:false }, border:{display:false} },
+      y: { ticks: { color: 'rgba(255,255,255,0.45)', font:{size:9}, callback: v => (v/1000).toFixed(0)+'k' }, grid: { color:'rgba(255,255,255,0.06)' }, border:{display:false} }
     }
   }
 });
@@ -274,155 +269,140 @@ new Chart(document.getElementById('trafficChart'), {
 function buildWeatherAnim(code) {
   const el = document.getElementById('weather-anim');
   el.innerHTML = '';
-  const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
-  svg.setAttribute('viewBox','0 0 72 72'); svg.setAttribute('width','72'); svg.setAttribute('height','72');
-  svg.style.overflow = 'visible';
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns,'svg');
+  svg.setAttribute('viewBox','0 0 64 64'); svg.setAttribute('width','64'); svg.setAttribute('height','64');
+  svg.style.overflow='visible';
 
-  const isRain = code >= 51 && code <= 67 || code >= 80 && code <= 82;
-  const isSun = code === 0;
-  const isCloud = code >= 1 && code <= 3;
-  const isStorm = code >= 95 && code <= 99;
-  const isSnow = code >= 71 && code <= 77;
-  const isFog = code >= 45 && code <= 48;
+  const isSun   = code === 0;
+  const isMixed = code >= 1 && code <= 2;
+  const isCloud = code === 3;
+  const isFog   = code >= 45 && code <= 48;
+  const isRain  = (code>=51&&code<=67)||(code>=80&&code<=82);
+  const isSnow  = code>=71&&code<=77;
+  const isStorm = code>=95&&code<=99;
 
-  if (isSun) {
-    // sun rays
-    for (let i=0;i<8;i++) {
-      const line = document.createElementNS('http://www.w3.org/2000/svg','line');
-      const a = (i*45)*Math.PI/180;
-      line.setAttribute('x1', 36+20*Math.cos(a)); line.setAttribute('y1', 36+20*Math.sin(a));
-      line.setAttribute('x2', 36+28*Math.cos(a)); line.setAttribute('y2', 36+28*Math.sin(a));
-      line.setAttribute('stroke','#f5c84a'); line.setAttribute('stroke-width','3');
-      line.setAttribute('stroke-linecap','round');
-      line.style.transformOrigin='36px 36px';
-      line.style.animation='spin 8s linear infinite';
-      svg.appendChild(line);
-    }
-    const circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
-    circle.setAttribute('cx','36'); circle.setAttribute('cy','36'); circle.setAttribute('r','14');
-    circle.setAttribute('fill','#f5c84a'); circle.style.animation='pulse 3s ease-in-out infinite';
-    svg.appendChild(circle);
-  } else if (isRain || isCloud || isStorm || isFog) {
-    // cloud body
-    const cloud = document.createElementNS('http://www.w3.org/2000/svg','g');
-    const cb = (cx,cy,r,fill) => { const c=document.createElementNS('http://www.w3.org/2000/svg','circle'); c.setAttribute('cx',cx);c.setAttribute('cy',cy);c.setAttribute('r',r);c.setAttribute('fill',fill);cloud.appendChild(c); };
-    const fill = isRain||isStorm ? 'rgba(180,200,230,0.9)' : 'rgba(200,220,240,0.85)';
-    cb(26,30,12,fill); cb(38,24,15,fill); cb(50,30,11,fill);
-    const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
-    rect.setAttribute('x','14'); rect.setAttribute('y','30'); rect.setAttribute('width','48'); rect.setAttribute('height','12');
-    rect.setAttribute('fill',fill); rect.setAttribute('rx','6'); cloud.appendChild(rect);
-    cloud.style.animation = 'sway 4s ease-in-out infinite';
-    cloud.style.transformOrigin = '36px 30px';
-    svg.appendChild(cloud);
+  const addCircle = (cx,cy,r,fill,parent) => { const c=document.createElementNS(ns,'circle'); c.setAttribute('cx',cx);c.setAttribute('cy',cy);c.setAttribute('r',r);c.setAttribute('fill',fill);(parent||svg).appendChild(c); return c; };
+  const addRect   = (x,y,w,h,rx,fill,parent) => { const r=document.createElementNS(ns,'rect'); r.setAttribute('x',x);r.setAttribute('y',y);r.setAttribute('width',w);r.setAttribute('height',h);r.setAttribute('rx',rx);r.setAttribute('fill',fill);(parent||svg).appendChild(r); return r; };
+  const addLine   = (x1,y1,x2,y2,stroke,sw,parent) => { const l=document.createElementNS(ns,'line'); l.setAttribute('x1',x1);l.setAttribute('y1',y1);l.setAttribute('x2',x2);l.setAttribute('y2',y2);l.setAttribute('stroke',stroke);l.setAttribute('stroke-width',sw);l.setAttribute('stroke-linecap','round');(parent||svg).appendChild(l); return l; };
 
-    if (isRain || isStorm) {
-      const drops = [[22,50],[32,55],[42,50],[52,55],[27,60],[47,60]];
-      drops.forEach(([x,y],i) => {
-        const drop = document.createElementNS('http://www.w3.org/2000/svg','line');
-        drop.setAttribute('x1',x); drop.setAttribute('y1',y);
-        drop.setAttribute('x2',x-3); drop.setAttribute('y2',y+9);
-        drop.setAttribute('stroke','rgba(120,180,255,0.9)'); drop.setAttribute('stroke-width','2.5');
-        drop.setAttribute('stroke-linecap','round');
-        drop.style.animation = `fall 1.2s ease-in ${(i*0.18).toFixed(2)}s infinite`;
-        svg.appendChild(drop);
-      });
-    }
-    if (isStorm) {
-      const bolt = document.createElementNS('http://www.w3.org/2000/svg','polyline');
-      bolt.setAttribute('points','38,44 33,55 38,55 33,66');
-      bolt.setAttribute('fill','none'); bolt.setAttribute('stroke','#f5c84a'); bolt.setAttribute('stroke-width','3');
-      bolt.setAttribute('stroke-linecap','round'); bolt.setAttribute('stroke-linejoin','round');
-      bolt.style.animation = 'bolt 2s ease infinite';
-      svg.appendChild(bolt);
-    }
-  } else if (isSnow) {
-    const cb2 = (cx,cy,r) => { const c=document.createElementNS('http://www.w3.org/2000/svg','circle'); c.setAttribute('cx',cx);c.setAttribute('cy',cy);c.setAttribute('r',r);c.setAttribute('fill','rgba(200,220,240,0.85)');svg.appendChild(c); };
-    cb2(26,28,12); cb2(38,22,15); cb2(50,28,11);
-    const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
-    rect.setAttribute('x','14'); rect.setAttribute('y','28'); rect.setAttribute('width','48'); rect.setAttribute('height','12');
-    rect.setAttribute('fill','rgba(200,220,240,0.85)'); rect.setAttribute('rx','6'); svg.appendChild(rect);
-    [[22,50],[34,56],[46,50],[28,62],[52,58]].forEach(([x,y],i) => {
-      const s = document.createElementNS('http://www.w3.org/2000/svg','text');
-      s.setAttribute('x',x); s.setAttribute('y',y); s.setAttribute('font-size','10');
-      s.setAttribute('fill','rgba(180,220,255,0.9)'); s.setAttribute('text-anchor','middle');
-      s.textContent='❄'; s.style.animation=`fall 2s ease-in ${(i*0.3).toFixed(1)}s infinite`;
-      svg.appendChild(s);
+  if (isSun || isMixed) {
+    const g = document.createElementNS(ns,'g');
+    g.style.transformOrigin='32px 32px'; g.style.animation='spin 10s linear infinite';
+    for(let i=0;i<8;i++){const a=(i*45)*Math.PI/180;addLine(32+18*Math.cos(a),32+18*Math.sin(a),32+25*Math.cos(a),32+25*Math.sin(a),'#f5c84a',2.5,g);}
+    svg.appendChild(g);
+    const sc=addCircle(32,32,14,'#f5c84a');
+    sc.style.animation='pulse 3s ease-in-out infinite';
+  }
+
+  if (isMixed||isCloud||isFog||isRain||isSnow||isStorm) {
+    const cg = document.createElementNS(ns,'g');
+    const cf = isRain||isStorm ? 'rgba(160,190,225,0.95)' : 'rgba(195,215,238,0.9)';
+    const ox = isMixed ? 10 : 0;
+    addCircle(22+ox,28,10,cf,cg); addCircle(32+ox,22,13,cf,cg); addCircle(43+ox,28,9,cf,cg);
+    addRect(12+ox,28,38,10,5,cf,cg);
+    if(!isMixed){ cg.style.animation='sway 5s ease-in-out infinite'; cg.style.transformOrigin='32px 26px'; }
+    svg.appendChild(cg);
+  }
+
+  if (isRain||isStorm) {
+    [[20,46],[29,52],[38,46],[47,52],[24,57],[43,57]].forEach(([x,y],i)=>{
+      const d=addLine(x,y,x-3,y+8,'rgba(100,170,255,0.9)',2.2);
+      d.style.animation=`fall 1.3s ease-in ${(i*0.19).toFixed(2)}s infinite`;
+    });
+  }
+  if (isSnow) {
+    [[20,46],[32,52],[44,46],[26,58],[46,58]].forEach(([x,y],i)=>{
+      const t=document.createElementNS(ns,'text'); t.setAttribute('x',x);t.setAttribute('y',y);
+      t.setAttribute('font-size','10');t.setAttribute('fill','rgba(180,220,255,0.9)');t.setAttribute('text-anchor','middle');
+      t.textContent='❄'; t.style.animation=`fall 2.2s ease-in ${(i*0.32).toFixed(2)}s infinite`;
+      svg.appendChild(t);
+    });
+  }
+  if (isStorm) {
+    const poly=document.createElementNS(ns,'polyline');
+    poly.setAttribute('points','35,42 30,52 35,52 30,62');
+    poly.setAttribute('fill','none');poly.setAttribute('stroke','#f5c84a');poly.setAttribute('stroke-width','3');
+    poly.setAttribute('stroke-linecap','round');poly.setAttribute('stroke-linejoin','round');
+    poly.style.animation='bolt 2.5s ease infinite'; svg.appendChild(poly);
+  }
+  if (isFog) {
+    [34,42,50].forEach((y,i)=>{
+      const r=addRect(10,y,44,3,2,'rgba(200,220,240,0.6)');
+      r.style.animation=`sway ${2.5+i*0.5}s ease-in-out ${i*0.3}s infinite`;
+      r.style.transformOrigin='32px '+y+'px';
     });
   }
   el.appendChild(svg);
 }
 
 // ── WEATHER API ──
-const WD = { 0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Foggy',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow grains',80:'Rain showers',81:'Heavy showers',82:'Violent showers',95:'Thunderstorm',96:'Thunderstorm w/ hail',99:'Thunderstorm w/ hail' };
-const WI = c => c===0?'ti-sun':c<=2?'ti-cloud-sun':c===3?'ti-cloud':c<=48?'ti-cloud-fog':c<=57?'ti-cloud-drizzle':c<=67?'ti-cloud-rain':c<=77?'ti-snowflake':c<=82?'ti-cloud-storm':'ti-bolt';
-const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const WD={0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Foggy',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow grains',80:'Rain showers',81:'Heavy showers',82:'Violent showers',95:'Thunderstorm',96:'Thunderstorm & hail',99:'Thunderstorm & hail'};
+const WI=c=>c===0?'ti-sun':c<=2?'ti-cloud-sun':c===3?'ti-cloud':c<=48?'ti-cloud-fog':c<=57?'ti-cloud-drizzle':c<=67?'ti-cloud-rain':c<=77?'ti-snowflake':c<=82?'ti-cloud-storm':'ti-bolt';
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
-async function loadWeather() {
-  try {
-    const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-33.797&longitude=151.183&current=temperature_2m,weathercode,relativehumidity_2m,apparent_temperature&daily=weathercode,temperature_2m_max,precipitation_probability_max&timezone=Australia%2FSydney&forecast_days=5');
-    const d = await r.json();
-    const temp = Math.round(d.current.temperature_2m);
-    const feels = Math.round(d.current.apparent_temperature);
-    const hum = d.current.relativehumidity_2m;
-    const code = d.current.weathercode;
-    document.getElementById('w-temp').textContent = temp + '°C';
-    document.getElementById('w-desc').textContent = (WD[code]||'Unknown') + ' · Feels like '+feels+'°C · Humidity '+hum+'%';
+async function loadWeather(){
+  try{
+    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=-33.797&longitude=151.183&current=temperature_2m,weathercode,relativehumidity_2m,apparent_temperature&daily=weathercode,temperature_2m_max,precipitation_probability_max&timezone=Australia%2FSydney&forecast_days=5');
+    const d=await r.json();
+    const temp=Math.round(d.current.temperature_2m);
+    const feels=Math.round(d.current.apparent_temperature);
+    const hum=d.current.relativehumidity_2m;
+    const code=d.current.weathercode;
+    document.getElementById('w-temp').textContent=temp+'°C';
+    document.getElementById('w-desc').textContent=(WD[code]||'Unknown')+' · Feels like '+feels+'°C · Humidity '+hum+'%';
     buildWeatherAnim(code);
-    const cards = document.querySelectorAll('.fc');
-    d.daily.time.slice(0,5).forEach((t,i) => {
-      const day = DAYS[new Date(t).getDay()];
-      const max = Math.round(d.daily.temperature_2m_max[i]);
-      const rain = d.daily.precipitation_probability_max[i];
-      const wc = d.daily.weathercode[i];
-      cards[i].innerHTML = `<div class="fc-day">${day}</div><i class="ti ${WI(wc)} fc-icon"></i><div class="fc-temp">${max}°</div><div class="fc-rain">${rain}%</div>`;
+    document.querySelectorAll('.fc').forEach((el,i)=>{
+      const t=d.daily.time[i]; if(!t)return;
+      const day=DAYS[new Date(t).getDay()];
+      const max=Math.round(d.daily.temperature_2m_max[i]);
+      const rain=d.daily.precipitation_probability_max[i];
+      const wc=d.daily.weathercode[i];
+      el.innerHTML=`<div class="fc-day">${day}</div><i class="ti ${WI(wc)} fc-icon"></i><div class="fc-temp">${max}°</div><div class="fc-rain">${rain}%</div>`;
     });
-  } catch(e) { buildWeatherAnim(61); }
+  }catch(e){ buildWeatherAnim(61); }
 }
-loadWeather(); setInterval(loadWeather, 600000);
+loadWeather(); setInterval(loadWeather,600000);
 
-// ── EVO GO JOBS ──
-const EVO_JOBS = [
-  { title:'Escalator E3 — fault alarm active', meta:'Raised today 06:42', cat:'Maintenance', catClass:'cat-maint', urgency:'eu-urgent', badge:'ebh', badgeText:'Urgent' },
-  { title:'Loading dock roller door — not closing', meta:'Raised today 08:15', cat:'Operations', catClass:'cat-ops', urgency:'eu-urgent', badge:'ebh', badgeText:'Urgent' },
-  { title:'HVAC unit failure — Level 3 West', meta:'Raised yesterday · Parts on order', cat:'Maintenance', catClass:'cat-maint', urgency:'eu-high', badge:'ebh', badgeText:'High' },
-  { title:'P2 car park lighting — 6 bays out', meta:'Raised 2 days ago', cat:'Car Park', catClass:'cat-park', urgency:'eu-high', badge:'ebh', badgeText:'High' },
-  { title:'Myer entry — ceiling tile fallen', meta:'Raised 2 days ago · Scheduled Fri', cat:'Maintenance', catClass:'cat-maint', urgency:'eu-med', badge:'ebm', badgeText:'Medium' },
-  { title:'Food court — grease trap overflow', meta:'Raised 2 days ago', cat:'Cleaners', catClass:'cat-clean', urgency:'eu-med', badge:'ebm', badgeText:'Medium' },
-  { title:'Bathroom L1 North — hand dryer fault', meta:'Raised 3 days ago', cat:'Maintenance', catClass:'cat-maint', urgency:'eu-med', badge:'ebm', badgeText:'Medium' },
-  { title:'Exterior signage — bulb replacement', meta:'Raised 3 days ago · Awaiting approval', cat:'Operations', catClass:'cat-ops', urgency:'eu-low', badge:'ebl', badgeText:'Low' },
-  { title:'Loading bay — line marking faded', meta:'Raised 4 days ago', cat:'Car Park', catClass:'cat-park', urgency:'eu-low', badge:'ebl', badgeText:'Low' },
-  { title:'Common area carpet — stain treatment', meta:'Raised 4 days ago', cat:'Cleaners', catClass:'cat-clean', urgency:'eu-low', badge:'ebl', badgeText:'Low' },
-  { title:'North entrance auto door — slow response', meta:'Raised 5 days ago', cat:'Maintenance', catClass:'cat-maint', urgency:'eu-low', badge:'ebl', badgeText:'Low' },
+// ── EVO GO ──
+const EVO_JOBS=[
+  {title:'Escalator E3 — fault alarm active',      meta:'Raised today 06:42',                    cat:'Maintenance', catC:'cat-maint', dot:'eu-urgent', badge:'ebh', bl:'Urgent'},
+  {title:'Loading dock roller door — not closing',  meta:'Raised today 08:15',                    cat:'Operations',  catC:'cat-ops',   dot:'eu-urgent', badge:'ebh', bl:'Urgent'},
+  {title:'HVAC unit failure — Level 3 West',        meta:'Raised yesterday · Parts on order',      cat:'Maintenance', catC:'cat-maint', dot:'eu-high',   badge:'ebh', bl:'High'},
+  {title:'P2 car park lighting — 6 bays out',       meta:'Raised 2 days ago',                     cat:'Car Park',    catC:'cat-park',  dot:'eu-high',   badge:'ebh', bl:'High'},
+  {title:'Myer entry — ceiling tile fallen',        meta:'Raised 2 days ago · Scheduled Fri',     cat:'Maintenance', catC:'cat-maint', dot:'eu-med',    badge:'ebm', bl:'Medium'},
+  {title:'Food court — grease trap overflow',       meta:'Raised 2 days ago',                     cat:'Cleaners',    catC:'cat-clean', dot:'eu-med',    badge:'ebm', bl:'Medium'},
+  {title:'Bathroom L1 North — hand dryer fault',   meta:'Raised 3 days ago',                     cat:'Maintenance', catC:'cat-maint', dot:'eu-med',    badge:'ebm', bl:'Medium'},
+  {title:'Exterior signage — bulb replacement',     meta:'Raised 3 days ago · Awaiting approval', cat:'Operations',  catC:'cat-ops',   dot:'eu-low',    badge:'ebl', bl:'Low'},
+  {title:'Loading bay — line marking faded',        meta:'Raised 4 days ago',                     cat:'Car Park',    catC:'cat-park',  dot:'eu-low',    badge:'ebl', bl:'Low'},
+  {title:'Common area carpet — stain treatment',    meta:'Raised 4 days ago',                     cat:'Cleaners',    catC:'cat-clean', dot:'eu-low',    badge:'ebl', bl:'Low'},
+  {title:'North entrance auto door — slow response',meta:'Raised 5 days ago',                     cat:'Maintenance', catC:'cat-maint', dot:'eu-low',    badge:'ebl', bl:'Low'},
 ];
 
-function buildEvoList() {
-  const el = document.getElementById('evo-list');
-  el.innerHTML = EVO_JOBS.map(j => `
-    <div class="evo-item">
-      <div class="evo-urgency ${j.urgency}"></div>
-      <div class="evo-body">
-        <div class="evo-title">${j.title}</div>
-        <div class="evo-meta">${j.meta}</div>
-      </div>
-      <span class="evo-cat ${j.catClass}">${j.cat}</span>
-      <span class="evo-badge ${j.badge}">${j.badgeText}</span>
-    </div>`).join('');
-}
-buildEvoList();
+document.getElementById('evo-list').innerHTML = EVO_JOBS.map(j=>`
+  <div class="evo-item">
+    <div class="evo-dot ${j.dot}"></div>
+    <div class="evo-body">
+      <div class="evo-title">${j.title}</div>
+      <div class="evo-meta">${j.meta}</div>
+    </div>
+    <span class="evo-cat ${j.catC}">${j.cat}</span>
+    <span class="evo-badge ${j.badge}">${j.bl}</span>
+  </div>`).join('');
 
-// slow auto-scroll for Evo Go
-(function autoScroll() {
-  const wrap = document.querySelector('.evo-scroll-wrap');
-  let pos = 0; let dir = 1; let paused = 0;
-  setInterval(() => {
-    if (paused > 0) { paused--; return; }
-    const max = wrap.scrollHeight - wrap.clientHeight;
-    if (max <= 0) return;
-    pos += dir * 0.6;
-    if (pos >= max) { pos = max; dir = -1; paused = 60; }
-    if (pos <= 0)   { pos = 0;   dir = 1;  paused = 60; }
-    wrap.scrollTop = pos;
-  }, 30);
+// slow autoscroll
+(function(){
+  const wrap=document.querySelector('.evo-scroll-wrap');
+  let pos=0,dir=1,pause=0;
+  setInterval(()=>{
+    if(pause>0){pause--;return;}
+    const max=wrap.scrollHeight-wrap.clientHeight;
+    if(max<=0)return;
+    pos+=dir*0.5;
+    if(pos>=max){pos=max;dir=-1;pause=80;}
+    if(pos<=0)  {pos=0;  dir=1; pause=80;}
+    wrap.scrollTop=pos;
+  },30);
 })();
 </script>
 </body>
