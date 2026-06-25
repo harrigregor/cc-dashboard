@@ -19,11 +19,12 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 }
 .left, .right { display: flex; flex-direction: column; gap: 8px; height: 100%; min-height: 0; }
 
-.card      { background: rgba(255,255,255,0.08); border-radius: 12px; border: 0.5px solid rgba(255,255,255,0.12); display: flex; flex-direction: column; min-height: 0; padding: 16px 20px; }
-.card-light{ background: #f7f0f1; border-radius: 12px; border: 0.5px solid rgba(83,22,32,0.12); display: flex; flex-direction: column; min-height: 0; padding: 16px 20px; }
+.card       { background: rgba(255,255,255,0.08); border-radius: 12px; border: 0.5px solid rgba(255,255,255,0.12); display: flex; flex-direction: column; min-height: 0; padding: 16px 20px; }
+.card-light { background: #f7f0f1; border-radius: 12px; border: 0.5px solid rgba(83,22,32,0.12); display: flex; flex-direction: column; min-height: 0; padding: 16px 20px; }
 
-.lbl      { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 10px; flex-shrink: 0; }
-.lbl-dark { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(83,22,32,0.35);    margin-bottom: 10px; flex-shrink: 0; }
+/* Widget headings — white/dark, bold, larger */
+.lbl      { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.75); font-weight: 600; margin-bottom: 12px; flex-shrink: 0; }
+.lbl-dark { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(83,22,32,0.7);    font-weight: 600; margin-bottom: 12px; flex-shrink: 0; }
 
 /* ═══ HEADER ═══ */
 .header-card {
@@ -32,28 +33,32 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
   display: flex; align-items: center; justify-content: space-between;
   flex-shrink: 0;
 }
-.logo { height: 52px; filter: brightness(0) saturate(100%) invert(9%) sepia(57%) saturate(2600%) hue-rotate(333deg) brightness(80%) contrast(95%); opacity:0.9; }
+.logo     { height: 52px; filter: brightness(0) saturate(100%) invert(9%) sepia(57%) saturate(2600%) hue-rotate(333deg) brightness(80%) contrast(95%); opacity:0.9; }
 .time-big { font-size: 58px; font-weight: 300; color: #531620; line-height: 1; text-align: right; }
 .date-sub { font-size: 15px; color: rgba(83,22,32,0.5); margin-top: 4px; text-align: right; }
 
 /* ═══ WEATHER ═══ */
 .wx-card { flex: 1; }
-.wx-main { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-.wx-anim  { width: 90px; height: 90px; flex-shrink: 0; }
+/* push rain anim clear of the forecast strip by giving it a clipping container */
+.wx-anim-wrap { width: 90px; height: 72px; flex-shrink: 0; overflow: hidden; }
+.wx-anim { width: 90px; height: 90px; }
+.wx-main  { display: flex; align-items: flex-start; gap: 8px; flex-shrink: 0; margin-bottom: 0; }
 .wx-center { flex: 1; }
 .wx-temp  { font-size: 62px; font-weight: 300; color: #fff; line-height: 1; }
 .wx-desc  { font-size: 17px; color: rgba(255,255,255,0.75); margin-top: 3px; }
 .wx-sub   { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 6px; }
-.wx-right { text-align: right; flex-shrink: 0; }
+.wx-right { text-align: right; flex-shrink: 0; padding-top: 6px; }
 .wx-loc   { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 6px; }
 .wx-hilo  { font-size: 17px; color: rgba(255,255,255,0.75); font-weight: 500; }
 
-.fc-row { display: flex; gap: 6px; margin-top: 12px; flex-shrink: 0; }
-.fc     { flex:1; background: rgba(255,255,255,0.07); border-radius: 8px; padding: 8px 4px; text-align: center; border: 0.5px solid rgba(255,255,255,0.09); }
-.fc-day  { font-size: 11px; color: rgba(255,255,255,0.4);  margin-bottom: 4px; }
-.fc-ico  { font-size: 20px; color: rgba(255,255,255,0.85); margin-bottom: 4px; display: block; }
-.fc-tmp  { font-size: 14px; font-weight: 500; color: #fff; }
-.fc-rain { font-size: 11px; color: rgba(100,160,255,0.8); margin-top: 3px; }
+/* forecast strip fills remaining weather card space */
+.fc-spacer { flex: 1; min-height: 8px; }
+.fc-row { display: flex; gap: 6px; flex-shrink: 0; }
+.fc     { flex:1; background: rgba(255,255,255,0.07); border-radius: 8px; padding: 10px 4px; text-align: center; border: 0.5px solid rgba(255,255,255,0.09); }
+.fc-day  { font-size: 11px; color: rgba(255,255,255,0.4);  margin-bottom: 5px; }
+.fc-ico  { font-size: 22px; color: rgba(255,255,255,0.85); margin-bottom: 5px; display: block; }
+.fc-tmp  { font-size: 14px; font-weight: 600; color: #fff; }
+.fc-rain { font-size: 11px; color: rgba(100,160,255,0.85); margin-top: 4px; }
 
 @keyframes fall  { 0%{transform:translateY(-10px);opacity:0}40%{opacity:1}100%{transform:translateY(46px);opacity:0} }
 @keyframes sway  { 0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)} }
@@ -66,21 +71,24 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 .traffic-top  { display: flex; gap: 24px; align-items: flex-start; flex-shrink: 0; }
 .traffic-big  { font-size: 64px; font-weight: 700; color: #fff; line-height: 1; }
 .traffic-lbl  { font-size: 14px; color: rgba(255,255,255,0.4); margin-top: 3px; }
-.traffic-stats { padding-top: 6px; display: flex; flex-direction: column; gap: 5px; }
+.traffic-stats { padding-top: 8px; display: flex; flex-direction: column; gap: 6px; }
 .tstat        { font-size: 15px; color: rgba(255,255,255,0.5); }
-.tstat strong { color: #fff; font-weight: 600; font-size: 17px; }
-.tstat-up     { color: #5dca7e; font-weight: 600; font-size: 17px; }
+.tstat strong { color: #fff; font-weight: 600; font-size: 18px; }
+.tstat-up     { color: #5dca7e; font-weight: 700; font-size: 18px; }
 
-.charts-wrap { flex: 1; min-height: 0; display: grid; grid-template-rows: 1fr 1fr; gap: 10px; margin-top: 12px; }
-.chart-block { position: relative; min-height: 0; display: flex; flex-direction: column; }
-.chart-lbl-sm { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 3px; flex-shrink: 0; }
-.chart-block canvas { flex: 1; min-height: 0; }
+/* two equal charts filling all remaining space */
+.charts-wrap { flex: 1; min-height: 0; display: grid; grid-template-rows: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.chart-block { min-height: 0; display: flex; flex-direction: column; }
+.chart-lbl-sm { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 4px; flex-shrink: 0; }
+.chart-block canvas { flex: 1; min-height: 0; width: 100% !important; }
 
 /* ═══ AUDIT ═══ */
 .audit-card { flex-shrink: 0; }
 .audit-table { width: 100%; border-collapse: collapse; }
-.audit-table th { font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(83,22,32,0.38); padding: 0 10px 8px 0; text-align: left; font-weight: 500; border-bottom: 0.5px solid rgba(83,22,32,0.1); }
-.audit-table td { padding: 8px 10px 8px 0; border-bottom: 0.5px solid rgba(83,22,32,0.06); color: #1e0a0e; vertical-align: middle; font-size: 14px; }
+.audit-table th { font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(83,22,32,0.4); padding: 0 0 8px 0; text-align: center; font-weight: 600; border-bottom: 0.5px solid rgba(83,22,32,0.1); }
+.audit-table th:first-child { text-align: left; }
+.audit-table td { padding: 8px 0; border-bottom: 0.5px solid rgba(83,22,32,0.06); color: #1e0a0e; vertical-align: middle; font-size: 14px; text-align: center; }
+.audit-table td:first-child { text-align: left; }
 .audit-table tr:last-child td { border-bottom: none; }
 .tick     { width: 22px; height: 22px; border-radius: 50%; display:inline-flex; align-items:center; justify-content:center; font-size:12px; }
 .tick-yes { background: #d4edda; color: #27773a; }
@@ -91,30 +99,27 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 
 /* ═══ EVO GO ═══ */
 .evo-card { flex: 1; }
-.evo-scroll-wrap  { flex:1; min-height:0; overflow:hidden; }
-.evo-scroll-inner { display:flex; flex-direction:column; }
-
 .evo-table { width:100%; border-collapse:collapse; }
-.evo-table th { font-size:10px; letter-spacing:0.09em; text-transform:uppercase; color:rgba(83,22,32,0.38); padding:0 10px 8px 0; text-align:left; font-weight:500; border-bottom:0.5px solid rgba(83,22,32,0.1); }
-.evo-table th:last-child { text-align:center; padding-right:0; }
-.evo-table td { padding:8px 10px 8px 0; border-bottom:0.5px solid rgba(83,22,32,0.06); vertical-align:middle; font-size:13px; color:#1e0a0e; }
+.evo-table th { font-size:10px; letter-spacing:0.09em; text-transform:uppercase; color:rgba(83,22,32,0.4); padding:0 0 8px 0; text-align:center; font-weight:600; border-bottom:0.5px solid rgba(83,22,32,0.1); }
+.evo-table th:first-child { text-align:left; }
+.evo-table td { padding:8px 0; border-bottom:0.5px solid rgba(83,22,32,0.06); vertical-align:middle; font-size:13px; color:#1e0a0e; text-align:center; }
+.evo-table td:first-child { text-align:left; }
 .evo-table tr:last-child td { border-bottom:none; }
-.evo-dot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:7px; flex-shrink:0; vertical-align:middle; }
+.evo-dot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:7px; vertical-align:middle; flex-shrink:0; }
 .eu-urgent,.eu-high { background:#e24b4a; }
 .eu-urgent { box-shadow:0 0 7px rgba(226,75,74,0.8); }
 .eu-med    { background:#ef9f27; }
-.eu-low    { background:#639922; }
+.eu-low    { background:#3a9e3a; }
 .evo-job-title { font-size:13px; font-weight:500; color:#1e0a0e; }
-.evo-job-meta  { font-size:10px; color:#aaa; margin-top:2px; }
-.evo-cat-plain { font-size:13px; color:rgba(83,22,32,0.55); }
-.evo-date-col  { font-size:12px; color:rgba(83,22,32,0.5); white-space:nowrap; }
+.evo-cat-plain { font-size:13px; color:rgba(83,22,32,0.5); }
+.evo-date-col  { font-size:13px; color:rgba(83,22,32,0.5); }
 
-/* urgency pills — bold colours */
-.urg { display:inline-block; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:0.03em; }
-.urg-urgent { background:#e24b4a; color:#fff; }
-.urg-high   { background:#e24b4a; color:#fff; }
-.urg-med    { background:#ef9f27; color:#fff; }
-.urg-low    { background:#3a9e3a; color:#fff; }
+.urg { display:inline-block; padding:4px 12px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:0.03em; }
+.urg-urgent,.urg-high { background:#e24b4a; color:#fff; }
+.urg-med              { background:#ef9f27; color:#fff; }
+.urg-low              { background:#3a9e3a; color:#fff; }
+
+.evo-scroll-wrap  { flex:1; min-height:0; overflow:hidden; }
 </style>
 </head>
 <body>
@@ -123,7 +128,6 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
   <!-- ═══ LEFT ═══ -->
   <div class="left">
 
-    <!-- Header -->
     <div class="header-card">
       <img class="logo" src="https://chadmik71.github.io/Valet/logo-maroon.png" alt="Chatswood Chase">
       <div>
@@ -132,11 +136,12 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
       </div>
     </div>
 
-    <!-- Weather -->
     <div class="card wx-card">
       <div class="lbl">Live weather — Chatswood NSW</div>
       <div class="wx-main">
-        <div class="wx-anim" id="weather-anim"></div>
+        <div class="wx-anim-wrap">
+          <div class="wx-anim" id="weather-anim"></div>
+        </div>
         <div class="wx-center">
           <div class="wx-temp" id="w-temp">--°</div>
           <div class="wx-desc" id="w-desc">Loading...</div>
@@ -147,6 +152,7 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
           <div class="wx-hilo" id="w-hilo">H: --° &nbsp;·&nbsp; L: --°</div>
         </div>
       </div>
+      <div class="fc-spacer"></div>
       <div class="fc-row" id="fc-row">
         <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
         <div class="fc"><div class="fc-day">--</div><i class="ti ti-cloud fc-ico"></i><div class="fc-tmp">--°</div><div class="fc-rain">--%</div></div>
@@ -156,7 +162,6 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
       </div>
     </div>
 
-    <!-- Traffic -->
     <div class="card traffic-card">
       <div class="lbl">Foot traffic</div>
       <div class="traffic-top">
@@ -166,7 +171,7 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
         </div>
         <div class="traffic-stats">
           <div class="tstat">Today total &nbsp;<strong id="t-total">8,214</strong></div>
-          <div class="tstat">Peak &nbsp;<strong>2,640</strong> at 12:30pm</div>
+          <div class="tstat">Peak &nbsp;<strong>2,640</strong>&nbsp; at 12:30pm</div>
           <div class="tstat">vs last Thu &nbsp;<span class="tstat-up">↑ 12%</span></div>
         </div>
       </div>
@@ -187,15 +192,22 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
   <!-- ═══ RIGHT ═══ -->
   <div class="right">
 
-    <!-- iAuditor -->
     <div class="card-light audit-card">
-      <div class="lbl-dark">iAuditor — daily inspections</div>
+      <div class="lbl-dark">iAuditor — Daily Inspections</div>
       <table class="audit-table">
-        <thead><tr><th>Date</th><th>Done</th><th>Completed by</th><th>Actions</th></tr></thead>
+        <thead>
+          <tr>
+            <th style="width:36%">Date</th>
+            <th style="width:16%">Done</th>
+            <th style="width:30%">Completed By</th>
+            <th style="width:18%">Actions</th>
+          </tr>
+        </thead>
         <tbody>
           <tr class="today-row">
             <td>Today</td><td><span class="tick tick-no">–</span></td>
-            <td style="color:rgba(83,22,32,0.3)">—</td><td><span class="act-zero">—</span></td>
+            <td style="color:rgba(83,22,32,0.3);text-align:center">—</td>
+            <td><span class="act-zero">—</span></td>
           </tr>
           <tr><td>Wed 24 Jun</td><td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td>Marcus T.</td><td><span class="act-zero">0</span></td></tr>
           <tr><td>Tue 23 Jun</td><td><span class="tick tick-yes"><i class="ti ti-check"></i></span></td><td>Sarah L.</td><td><span class="act-badge">2</span></td></tr>
@@ -207,15 +219,15 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
       </table>
     </div>
 
-    <!-- Evo Go -->
     <div class="card-light evo-card">
-      <div class="lbl-dark">Evo Go — outstanding jobs</div>
+      <div class="lbl-dark">Evo Go — Outstanding Jobs</div>
+      <!-- sticky header row -->
       <table class="evo-table" style="flex-shrink:0;">
         <thead><tr>
-          <th style="width:36%">Job</th>
-          <th style="width:14%">Category</th>
+          <th style="width:40%">Job</th>
+          <th style="width:16%">Category</th>
           <th style="width:16%">Raised</th>
-          <th style="width:13%;text-align:center">Urgency</th>
+          <th style="width:14%">Urgency</th>
         </tr></thead>
       </table>
       <div class="evo-scroll-wrap">
@@ -250,32 +262,25 @@ setInterval(()=>{
 },7000);
 
 // ── CHARTS ──
-// Hourly — only up to current hour (16:00 = index 10 in our 6am-based array)
-const now=new Date();
-const currentHourIndex = Math.min(now.getHours()-6, 15); // 6am=0 ... 9pm=15
-
+const nowH=new Date().getHours();
 const allHours=['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm'];
-const allData= [  80,  140,  310,  580,  920, 1340, 1820, 2640, 2380, 1950, 1640, 1420, 1180,  850,  520,  210];
+const allData= [80,140,310,580,920,1340,1820,2640,2380,1950,1640,1420,1180,850,520,210];
+const cutoff=Math.max(Math.min(nowH-6+1,16),2);
+const hourLabels=allHours.slice(0,cutoff);
+const hourData=allData.slice(0,cutoff);
 
-// only show hours up to now
-const hourLabels = allHours.slice(0, Math.max(currentHourIndex+1, 2));
-const hourData   = allData.slice(0,  Math.max(currentHourIndex+1, 2));
-
-const baseOpts = {
-  responsive:true, maintainAspectRatio:false,
-  plugins:{ legend:{display:false}, tooltip:{enabled:false} },
+const baseOpts={
+  responsive:true,maintainAspectRatio:false,
+  plugins:{legend:{display:false},tooltip:{enabled:false}},
   scales:{
-    x:{ ticks:{color:'rgba(255,255,255,0.35)',font:{size:9}}, grid:{display:false}, border:{display:false} },
-    y:{ ticks:{color:'rgba(255,255,255,0.35)',font:{size:9},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v}, grid:{color:'rgba(255,255,255,0.05)'}, border:{display:false} }
+    x:{ticks:{color:'rgba(255,255,255,0.35)',font:{size:9}},grid:{display:false},border:{display:false}},
+    y:{ticks:{color:'rgba(255,255,255,0.35)',font:{size:9},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v},grid:{color:'rgba(255,255,255,0.05)'},border:{display:false}}
   }
 };
 
 new Chart(document.getElementById('chartDay'),{
   type:'line',
-  data:{
-    labels:hourLabels,
-    datasets:[{data:hourData,borderColor:'rgba(255,255,255,0.75)',backgroundColor:'rgba(255,255,255,0.08)',fill:true,borderWidth:2,tension:0.4,pointRadius:0}]
-  },
+  data:{labels:hourLabels,datasets:[{data:hourData,borderColor:'rgba(255,255,255,0.8)',backgroundColor:'rgba(255,255,255,0.09)',fill:true,borderWidth:2.5,tension:0.4,pointRadius:0}]},
   options:baseOpts
 });
 
@@ -285,8 +290,8 @@ new Chart(document.getElementById('chartWeek'),{
     labels:['Fri','Sat','Sun','Mon','Tue','Wed','Thu'],
     datasets:[{
       data:[8200,14300,12800,5400,5900,6300,7100],
-      backgroundColor:['rgba(255,255,255,0.15)','rgba(255,255,255,0.45)','rgba(255,255,255,0.35)','rgba(255,255,255,0.1)','rgba(255,255,255,0.1)','rgba(255,255,255,0.12)','rgba(255,255,255,0.28)'],
-      borderColor:    ['rgba(255,255,255,0.3)', 'rgba(255,255,255,0.7)','rgba(255,255,255,0.55)','rgba(255,255,255,0.2)','rgba(255,255,255,0.2)','rgba(255,255,255,0.25)','rgba(255,255,255,0.5)'],
+      backgroundColor:['rgba(255,255,255,0.15)','rgba(255,255,255,0.5)','rgba(255,255,255,0.38)','rgba(255,255,255,0.1)','rgba(255,255,255,0.1)','rgba(255,255,255,0.13)','rgba(255,255,255,0.3)'],
+      borderColor:    ['rgba(255,255,255,0.3)', 'rgba(255,255,255,0.75)','rgba(255,255,255,0.6)','rgba(255,255,255,0.2)','rgba(255,255,255,0.2)','rgba(255,255,255,0.27)','rgba(255,255,255,0.55)'],
       borderWidth:1,borderRadius:4
     }]
   },
@@ -298,86 +303,107 @@ function buildAnim(code){
   const el=document.getElementById('weather-anim');el.innerHTML='';
   const ns='http://www.w3.org/2000/svg';
   const svg=document.createElementNS(ns,'svg');
-  svg.setAttribute('viewBox','0 0 90 90');svg.setAttribute('width','90');svg.setAttribute('height','90');svg.style.overflow='visible';
+  svg.setAttribute('viewBox','0 0 90 90');svg.setAttribute('width','90');svg.setAttribute('height','90');
+  svg.style.overflow='visible';
   const mk=(tag,a,p)=>{const e=document.createElementNS(ns,tag);Object.entries(a).forEach(([k,v])=>e.setAttribute(k,v));(p||svg).appendChild(e);return e;};
   const isSun=code===0,isMix=code>=1&&code<=2,isCld=code===3;
   const isFog=code>=45&&code<=48,isRain=(code>=51&&code<=67)||(code>=80&&code<=82);
   const isSnow=code>=71&&code<=77,isStorm=code>=95&&code<=99;
   if(isSun||isMix){
-    const g=document.createElementNS(ns,'g');g.style.transformOrigin='45px 45px';g.style.animation='spin 12s linear infinite';
-    for(let i=0;i<8;i++){const a=(i*45)*Math.PI/180;mk('line',{x1:45+22*Math.cos(a),y1:45+22*Math.sin(a),x2:45+31*Math.cos(a),y2:45+31*Math.sin(a),stroke:'#f5c84a','stroke-width':'3','stroke-linecap':'round'},g);}
+    const g=document.createElementNS(ns,'g');g.style.transformOrigin='45px 38px';g.style.animation='spin 12s linear infinite';
+    for(let i=0;i<8;i++){const a=(i*45)*Math.PI/180;mk('line',{x1:45+20*Math.cos(a),y1:38+20*Math.sin(a),x2:45+28*Math.cos(a),y2:38+28*Math.sin(a),stroke:'#f5c84a','stroke-width':'3','stroke-linecap':'round'},g);}
     svg.appendChild(g);
-    const sc=mk('circle',{cx:45,cy:45,r:18,fill:'#f5c84a'});sc.style.animation='pulse 3s ease-in-out infinite';
+    const sc=mk('circle',{cx:45,cy:38,r:16,fill:'#f5c84a'});sc.style.animation='pulse 3s ease-in-out infinite';
   }
   if(isMix||isCld||isFog||isRain||isSnow||isStorm){
     const cg=document.createElementNS(ns,'g');
     const cf=isRain||isStorm?'rgba(145,185,225,0.95)':'rgba(195,215,238,0.9)';
-    const ox=isMix?12:0,oy=isMix?9:0;
-    mk('circle',{cx:27+ox,cy:38+oy,r:13,fill:cf},cg);mk('circle',{cx:43+ox,cy:30+oy,r:17,fill:cf},cg);mk('circle',{cx:59+ox,cy:38+oy,r:12,fill:cf},cg);
-    mk('rect',{x:14+ox,y:37+oy,width:58,height:14,rx:7,fill:cf},cg);
-    if(!isMix){cg.style.animation='sway 5s ease-in-out infinite';cg.style.transformOrigin='45px 35px';}
+    const ox=isMix?10:0,oy=isMix?8:0;
+    mk('circle',{cx:26+ox,cy:34+oy,r:13,fill:cf},cg);
+    mk('circle',{cx:42+ox,cy:26+oy,r:17,fill:cf},cg);
+    mk('circle',{cx:58+ox,cy:34+oy,r:12,fill:cf},cg);
+    mk('rect',{x:13+ox,y:33+oy,width:58,height:14,rx:7,fill:cf},cg);
+    if(!isMix){cg.style.animation='sway 5s ease-in-out infinite';cg.style.transformOrigin='45px 30px';}
     svg.appendChild(cg);
   }
   if(isRain||isStorm){
-    [[26,58],[36,64],[46,58],[56,64],[31,70],[51,70]].forEach(([x,y],i)=>{
-      const d=mk('line',{x1:x,y1:y,x2:x-4,y2:y+10,stroke:'rgba(100,170,255,0.9)','stroke-width':'2.5','stroke-linecap':'round'});
+    // rain drops contained within 0-70px y range so they don't escape the clip wrapper
+    [[26,52],[36,57],[46,52],[56,57],[31,62],[51,62]].forEach(([x,y],i)=>{
+      const d=mk('line',{x1:x,y1:y,x2:x-3,y2:y+8,stroke:'rgba(100,170,255,0.9)','stroke-width':'2.5','stroke-linecap':'round'});
       d.style.animation=`fall 1.3s ease-in ${(i*0.19).toFixed(2)}s infinite`;
     });
   }
   if(isSnow){
-    [[26,58],[40,66],[56,58],[32,72],[52,72]].forEach(([x,y],i)=>{
-      const t=document.createElementNS(ns,'text');t.setAttribute('x',x);t.setAttribute('y',y);t.setAttribute('font-size','13');
+    [[26,54],[40,61],[56,54],[32,68],[52,68]].forEach(([x,y],i)=>{
+      const t=document.createElementNS(ns,'text');
+      t.setAttribute('x',x);t.setAttribute('y',y);t.setAttribute('font-size','11');
       t.setAttribute('fill','rgba(180,220,255,0.9)');t.setAttribute('text-anchor','middle');
-      t.textContent='❄';t.style.animation=`fall 2.2s ease-in ${(i*0.32).toFixed(2)}s infinite`;svg.appendChild(t);
+      t.textContent='❄';t.style.animation=`fall 2.2s ease-in ${(i*0.32).toFixed(2)}s infinite`;
+      svg.appendChild(t);
     });
   }
-  if(isStorm){const p=mk('polyline',{points:'48,52 42,64 48,64 42,78',fill:'none',stroke:'#f5c84a','stroke-width':'3.5','stroke-linecap':'round','stroke-linejoin':'round'});p.style.animation='bolt 2.5s ease infinite';}
-  if(isFog){[46,56,66].forEach((y,i)=>{const r=mk('rect',{x:10,y,width:70,height:4,rx:2,fill:'rgba(200,220,240,0.55)'});r.style.animation=`sway ${2.5+i*0.5}s ease-in-out ${i*0.3}s infinite`;r.style.transformOrigin='45px '+y+'px';});}
+  if(isStorm){
+    const p=mk('polyline',{points:'46,48 40,59 46,59 40,72',fill:'none',stroke:'#f5c84a','stroke-width':'3.5','stroke-linecap':'round','stroke-linejoin':'round'});
+    p.style.animation='bolt 2.5s ease infinite';
+  }
+  if(isFog){
+    [40,50,60].forEach((y,i)=>{
+      const r=mk('rect',{x:10,y,width:70,height:4,rx:2,fill:'rgba(200,220,240,0.55)'});
+      r.style.animation=`sway ${2.5+i*0.5}s ease-in-out ${i*0.3}s infinite`;
+      r.style.transformOrigin='45px '+y+'px';
+    });
+  }
   el.appendChild(svg);
 }
 
 // ── WEATHER API ──
 const WD={0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Foggy',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow grains',80:'Rain showers',81:'Heavy showers',82:'Violent showers',95:'Thunderstorm',96:'Thunderstorm & hail',99:'Thunderstorm & hail'};
-const WI=c=>{ if(c===0)return'ti-sun';if(c<=2)return'ti-cloud-sun';if(c===3)return'ti-cloud';if(c<=48)return'ti-cloud-fog';if(c<=57)return'ti-cloud-drizzle';if(c<=67)return'ti-cloud-rain';if(c<=77)return'ti-snowflake';if(c<=82)return'ti-cloud-storm';return'ti-bolt'; };
+const WI=c=>{if(c===0)return'ti-sun';if(c<=2)return'ti-cloud-sun';if(c===3)return'ti-cloud';if(c<=48)return'ti-cloud-fog';if(c<=57)return'ti-cloud-drizzle';if(c<=67)return'ti-cloud-rain';if(c<=77)return'ti-snowflake';if(c<=82)return'ti-cloud-storm';return'ti-bolt';};
 const DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
 async function loadWeather(){
   try{
-    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=-33.797&longitude=151.183&current=temperature_2m,weathercode,relativehumidity_2m,apparent_temperature,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Australia%2FSydney&forecast_days=5');
+    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=-33.797&longitude=151.183&current=temperature_2m,weathercode,relativehumidity_2m,apparent_temperature,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Australia%2FSydney&forecast_days=6');
     const d=await r.json();
     const cur=d.current,daily=d.daily;
-    const temp=Math.round(cur.temperature_2m);
     const code=cur.weathercode;
-    document.getElementById('w-temp').textContent=temp+'°';
+    document.getElementById('w-temp').textContent=Math.round(cur.temperature_2m)+'°';
     document.getElementById('w-desc').textContent=WD[code]||'Unknown';
     document.getElementById('w-sub').textContent='Feels like '+Math.round(cur.apparent_temperature)+'°  ·  Humidity '+cur.relativehumidity_2m+'%  ·  Wind '+Math.round(cur.windspeed_10m)+' km/h';
     document.getElementById('w-hilo').textContent='H: '+Math.round(daily.temperature_2m_max[0])+'°  ·  L: '+Math.round(daily.temperature_2m_min[0])+'°';
     buildAnim(code);
-    document.querySelectorAll('.fc').forEach((el,i)=>{
-      const t=daily.time[i],wc=daily.weathercode[i];
-      if(!t||wc===undefined||wc===null)return;
+    // Use days 1-5 (skip today index 0) so we get 5 genuine future days
+    const fcCards=document.querySelectorAll('.fc');
+    for(let i=0;i<5;i++){
+      const idx=i+1; // skip today
+      const t=daily.time[idx];
+      const wc=daily.weathercode[idx];
+      if(!t||wc===undefined||wc===null){
+        fcCards[i].querySelector('.fc-ico').className='ti ti-cloud fc-ico';
+        continue;
+      }
       const day=DN[new Date(t+'T00:00:00').getDay()];
-      const max=Math.round(daily.temperature_2m_max[i]);
-      const rain=daily.precipitation_probability_max[i]??'--';
-      el.innerHTML=`<div class="fc-day">${day}</div><i class="ti ${WI(wc)} fc-ico"></i><div class="fc-tmp">${max}°</div><div class="fc-rain">${rain}%</div>`;
-    });
+      const max=Math.round(daily.temperature_2m_max[idx]);
+      const rain=daily.precipitation_probability_max[idx]??'--';
+      fcCards[i].innerHTML=`<div class="fc-day">${day}</div><i class="ti ${WI(wc)} fc-ico"></i><div class="fc-tmp">${max}°</div><div class="fc-rain">${rain}%</div>`;
+    }
   }catch(e){buildAnim(61);}
 }
 loadWeather(); setInterval(loadWeather,600000);
 
 // ── EVO GO ──
 const EVO=[
-  {t:'Escalator E3 — fault alarm active',       cat:'Maintenance', raised:'Today',      d:'eu-urgent', urg:'Urgent',  uc:'urg-urgent'},
-  {t:'Loading dock roller door — not closing',   cat:'Operations',  raised:'Today',      d:'eu-urgent', urg:'Urgent',  uc:'urg-urgent'},
-  {t:'HVAC unit failure — Level 3 West',         cat:'Maintenance', raised:'Yesterday',  d:'eu-high',   urg:'High',    uc:'urg-high'},
-  {t:'P2 car park lighting — 6 bays out',        cat:'Car Park',    raised:'2 days ago', d:'eu-high',   urg:'High',    uc:'urg-high'},
-  {t:'Myer entry — ceiling tile fallen',         cat:'Maintenance', raised:'2 days ago', d:'eu-med',    urg:'Medium',  uc:'urg-med'},
-  {t:'Food court — grease trap overflow',        cat:'Cleaners',    raised:'2 days ago', d:'eu-med',    urg:'Medium',  uc:'urg-med'},
-  {t:'Bathroom L1 North — hand dryer fault',     cat:'Maintenance', raised:'3 days ago', d:'eu-med',    urg:'Medium',  uc:'urg-med'},
-  {t:'Exterior signage — bulb replacement',      cat:'Operations',  raised:'3 days ago', d:'eu-low',    urg:'Low',     uc:'urg-low'},
-  {t:'Loading bay — line marking faded',         cat:'Car Park',    raised:'4 days ago', d:'eu-low',    urg:'Low',     uc:'urg-low'},
-  {t:'Common area carpet — stain treatment',     cat:'Cleaners',    raised:'4 days ago', d:'eu-low',    urg:'Low',     uc:'urg-low'},
-  {t:'North entrance auto door — slow response', cat:'Maintenance', raised:'5 days ago', d:'eu-low',    urg:'Low',     uc:'urg-low'},
+  {t:'Escalator E3 — fault alarm active',       cat:'Maintenance',raised:'Today',      d:'eu-urgent',urg:'Urgent',uc:'urg-urgent'},
+  {t:'Loading dock roller door — not closing',   cat:'Operations', raised:'Today',      d:'eu-urgent',urg:'Urgent',uc:'urg-urgent'},
+  {t:'HVAC unit failure — Level 3 West',         cat:'Maintenance',raised:'Yesterday',  d:'eu-high',  urg:'High',  uc:'urg-high'},
+  {t:'P2 car park lighting — 6 bays out',        cat:'Car Park',   raised:'2 days ago', d:'eu-high',  urg:'High',  uc:'urg-high'},
+  {t:'Myer entry — ceiling tile fallen',         cat:'Maintenance',raised:'2 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
+  {t:'Food court — grease trap overflow',        cat:'Cleaners',   raised:'2 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
+  {t:'Bathroom L1 North — hand dryer fault',     cat:'Maintenance',raised:'3 days ago', d:'eu-med',   urg:'Medium',uc:'urg-med'},
+  {t:'Exterior signage — bulb replacement',      cat:'Operations', raised:'3 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
+  {t:'Loading bay — line marking faded',         cat:'Car Park',   raised:'4 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
+  {t:'Common area carpet — stain treatment',     cat:'Cleaners',   raised:'4 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
+  {t:'North entrance auto door — slow response', cat:'Maintenance',raised:'5 days ago', d:'eu-low',   urg:'Low',   uc:'urg-low'},
 ];
 
 document.getElementById('evo-body').innerHTML=EVO.map(j=>`
@@ -385,10 +411,9 @@ document.getElementById('evo-body').innerHTML=EVO.map(j=>`
     <td><span class="evo-dot ${j.d}"></span><span class="evo-job-title">${j.t}</span></td>
     <td><span class="evo-cat-plain">${j.cat}</span></td>
     <td class="evo-date-col">${j.raised}</td>
-    <td style="text-align:center"><span class="urg ${j.uc}">${j.urg}</span></td>
+    <td><span class="urg ${j.uc}">${j.urg}</span></td>
   </tr>`).join('');
 
-// autoscroll
 (function(){
   const w=document.querySelector('.evo-scroll-wrap');
   let pos=0,dir=1,pause=0;
