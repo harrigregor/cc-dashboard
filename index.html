@@ -29,7 +29,7 @@ html, body { width: 100%; height: 100%; background: #531620; overflow: hidden; f
 .header-card { background: #f7f0f1; border-radius: 12px; padding: 12px 22px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
 .logo     { height: 50px; filter: brightness(0) saturate(100%) invert(9%) sepia(57%) saturate(2600%) hue-rotate(333deg) brightness(80%) contrast(95%); opacity:0.9; }
 .time-big { font-size: 56px; font-weight: 300; color: #531620; line-height: 1; text-align: right; }
-.date-sub { font-size: 15px; color: rgba(83,22,32,0.5); margin-top: 4px; text-align: right; }
+.date-sub { font-size: 15px; color: #531620; margin-top: 4px; text-align: right; font-weight: 300; opacity: 0.75; }
 
 /* ═══ WEATHER ═══ */
 .wx-card { flex-shrink: 0; }
@@ -384,10 +384,10 @@ async function loadWeather(){
       const wc=daily.weathercode[idx];
       const max=daily.temperature_2m_max[idx];
       const rain=daily.precipitation_probability_max[idx];
-      if(!t || wc===undefined || wc===null || max===undefined || max===null) continue;
+      const safeWc=(wc!==undefined&&wc!==null)?wc:2; const safeMax=(max!==undefined&&max!==null)?Math.round(max):"--"; if(!t) continue;
       const day=DN[new Date(t+'T00:00:00').getDay()];
       const rainStr=rain!==null&&rain!==undefined ? rain+'%' : '--';
-      fcCards[i].innerHTML=`<div class="fc-day">${day}</div><i class="ti ${WI(wc)} fc-ico"></i><div class="fc-tmp">${Math.round(max)}°</div><div class="fc-rain">${rainStr}</div>`;
+      fcCards[i].innerHTML=`<div class="fc-day">${day}</div><i class="ti ${WI(safeWc)} fc-ico"></i><div class="fc-tmp">${safeMax}°</div><div class="fc-rain">${rainStr}</div>`;
     }
   }catch(e){buildAnim(61);}
 }
